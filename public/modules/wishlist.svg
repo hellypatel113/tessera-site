@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" width="320" height="180" role="img">
+<title>A product grid where the heart on one product fills in and the wishlist counter goes up from 2 to 3.</title>
+<defs><path id="wl-h" d="M0 4.5C-5-0.5-8-3-8-6.2A3.9 3.9 0 0 1 0-8.6A3.9 3.9 0 0 1 8-6.2C8-3 5-0.5 0 4.5Z"/></defs>
+<style>
+.wl-f{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif}
+@media (prefers-reduced-motion: no-preference){
+.wl-b0{animation:wl-d0 11s ease-in-out infinite alternate}.wl-b1{animation:wl-d1 9s ease-in-out infinite alternate}.wl-b2{animation:wl-d0 12s ease-in-out infinite alternate-reverse}
+@keyframes wl-d0{from{transform:translate(0,0)}to{transform:translate(18px,12px)}}@keyframes wl-d1{from{transform:translate(0,0)}to{transform:translate(-20px,-10px)}}
+.wl-fill{transform-box:fill-box;transform-origin:center;animation:wl-pop 4.5s ease-in-out infinite}
+.wl-n3{animation:wl-a 4.5s ease-in-out infinite}
+.wl-n2{animation:wl-b 4.5s ease-in-out infinite}
+@keyframes wl-pop{0%,10%{opacity:1;transform:scale(1)}18%,40%{opacity:0;transform:scale(.4)}50%{opacity:1;transform:scale(1.25)}58%,100%{opacity:1;transform:scale(1)}}
+@keyframes wl-a{0%,10%{opacity:1}18%,48%{opacity:0}56%,100%{opacity:1}}
+@keyframes wl-b{0%,10%{opacity:0}18%,48%{opacity:1}56%,100%{opacity:0}}
+}
+</style>
+<defs><linearGradient id="wl-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F43F5E"/><stop offset="1" stop-color="#FB8B3C"/></linearGradient><radialGradient id="wl-r0"><stop offset="0" stop-color="#FB7185" stop-opacity=".75"/><stop offset="1" stop-color="#FB7185" stop-opacity="0"/></radialGradient><radialGradient id="wl-r1"><stop offset="0" stop-color="#5EEAD4" stop-opacity=".75"/><stop offset="1" stop-color="#5EEAD4" stop-opacity="0"/></radialGradient><radialGradient id="wl-r2"><stop offset="0" stop-color="#A78BFA" stop-opacity=".75"/><stop offset="1" stop-color="#A78BFA" stop-opacity="0"/></radialGradient></defs>
+<rect width="320" height="180" fill="#F4F1FA"/>
+<circle class="wl-b0" cx="290" cy="20" r="130" fill="url(#wl-r0)"/>
+<circle class="wl-b1" cx="20" cy="170" r="140" fill="url(#wl-r1)"/>
+<circle class="wl-b2" cx="170" cy="190" r="90" fill="url(#wl-r2)"/>
+<g class="wl-f" font-size="11">
+<rect x="20" y="15" width="280" height="30" rx="10" fill="#1E1B4B" opacity=".09"/>
+<rect x="20" y="12" width="280" height="30" rx="10" fill="#fff"/>
+<rect x="34" y="24" width="56" height="7" rx="3.5" fill="#DDE1E6"/>
+<use href="#wl-h" x="268" y="30" fill="none" stroke="#1F2433" stroke-width="1.6"/>
+<circle cx="280" cy="20" r="7.5" fill="url(#wl-g)"/>
+<text class="wl-n3" x="280" y="24" fill="#fff" font-size="10" font-weight="600" text-anchor="middle">3</text>
+<text class="wl-n2" x="280" y="24" fill="#fff" font-size="10" font-weight="600" text-anchor="middle" opacity="0">2</text>
+<rect x="20" y="57" width="84" height="110" rx="11" fill="#1E1B4B" opacity=".09"/>
+<rect x="20" y="54" width="84" height="110" rx="11" fill="#fff"/>
+<rect x="27" y="61" width="70" height="66" rx="8" fill="#FFE1E6"/><circle cx="62" cy="96" r="16" fill="url(#wl-g)" opacity=".55"/>
+<circle cx="86" cy="72" r="8" fill="#fff"/><use href="#wl-h" x="86" y="75" transform="translate(86 75) scale(.62) translate(-86 -75)" fill="url(#wl-g)"/>
+<rect x="28" y="136" width="52" height="6" rx="3" fill="#DDE1E6"/><rect x="28" y="147" width="30" height="6" rx="3" fill="#EBEEF1"/>
+<rect x="118" y="57" width="84" height="110" rx="11" fill="#1E1B4B" opacity=".09"/>
+<rect x="118" y="54" width="84" height="110" rx="11" fill="#fff" stroke="#E11D48" stroke-width="1.5"/>
+<rect x="125" y="61" width="70" height="66" rx="8" fill="#FFE1E6"/><path d="M160 78l16 32h-32z" fill="url(#wl-g)" opacity=".5"/>
+<circle cx="184" cy="72" r="10" fill="#fff"/>
+<use href="#wl-h" x="184" y="76" fill="none" stroke="#E11D48" stroke-width="1.6"/>
+<use class="wl-fill" href="#wl-h" x="184" y="76" fill="url(#wl-g)"/>
+<rect x="126" y="136" width="58" height="6" rx="3" fill="#DDE1E6"/><rect x="126" y="147" width="34" height="6" rx="3" fill="#EBEEF1"/>
+<rect x="216" y="57" width="84" height="110" rx="11" fill="#1E1B4B" opacity=".09"/>
+<rect x="216" y="54" width="84" height="110" rx="11" fill="#fff"/>
+<rect x="223" y="61" width="70" height="66" rx="8" fill="#FFE1E6"/><rect x="243" y="80" width="30" height="32" rx="7" fill="#B5123A" opacity=".45"/>
+<circle cx="282" cy="72" r="8" fill="#fff"/><use href="#wl-h" x="282" y="75" transform="translate(282 75) scale(.62) translate(-282 -75)" fill="none" stroke="#9AA3AD" stroke-width="2.4"/>
+<rect x="224" y="136" width="48" height="6" rx="3" fill="#DDE1E6"/><rect x="224" y="147" width="32" height="6" rx="3" fill="#EBEEF1"/>
+</g>
+</svg>

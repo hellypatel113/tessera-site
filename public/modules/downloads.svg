@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" width="320" height="180" role="img">
+<title>A digital file card for a PDF with a download button; the progress bar fills as the file downloads.</title>
+<style>
+.dl-f{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif}
+@media (prefers-reduced-motion: no-preference){
+.dl-b0{animation:dl-d0 11s ease-in-out infinite alternate}.dl-b1{animation:dl-d1 9s ease-in-out infinite alternate}.dl-b2{animation:dl-d0 12s ease-in-out infinite alternate-reverse}
+@keyframes dl-d0{from{transform:translate(0,0)}to{transform:translate(18px,12px)}}@keyframes dl-d1{from{transform:translate(0,0)}to{transform:translate(-20px,-10px)}}
+.dl-bar{transform-box:fill-box;transform-origin:left;animation:dl-bar 5s ease-in-out infinite}
+.dl-arr{animation:dl-arr 1.6s ease-in-out infinite}
+@keyframes dl-bar{0%{transform:scaleX(.7);opacity:1}40%,70%{transform:scaleX(1);opacity:1}78%{transform:scaleX(1);opacity:0}80%{transform:scaleX(.05);opacity:0}86%{transform:scaleX(.05);opacity:1}100%{transform:scaleX(.7);opacity:1}}
+@keyframes dl-arr{0%,100%{transform:translateY(-2px)}50%{transform:translateY(3px)}}
+}
+</style>
+<defs><linearGradient id="dl-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#D9258A"/><stop offset="1" stop-color="#F9735B"/></linearGradient><radialGradient id="dl-r0"><stop offset="0" stop-color="#FB7185" stop-opacity=".75"/><stop offset="1" stop-color="#FB7185" stop-opacity="0"/></radialGradient><radialGradient id="dl-r1"><stop offset="0" stop-color="#5EEAD4" stop-opacity=".75"/><stop offset="1" stop-color="#5EEAD4" stop-opacity="0"/></radialGradient><radialGradient id="dl-r2"><stop offset="0" stop-color="#A78BFA" stop-opacity=".75"/><stop offset="1" stop-color="#A78BFA" stop-opacity="0"/></radialGradient></defs>
+<rect width="320" height="180" fill="#F4F1FA"/>
+<circle class="dl-b0" cx="290" cy="20" r="130" fill="url(#dl-r0)"/>
+<circle class="dl-b1" cx="20" cy="170" r="140" fill="url(#dl-r1)"/>
+<circle class="dl-b2" cx="170" cy="190" r="90" fill="url(#dl-r2)"/>
+<rect x="30" y="31" width="260" height="118" rx="12" fill="#1E1B4B" opacity=".09"/>
+<rect x="30" y="28" width="260" height="118" rx="12" fill="#fff"/>
+<g class="dl-f" font-size="11">
+<path d="M50 44h34l14 14v52a6 6 0 0 1-6 6H50a6 6 0 0 1-6-6V50a6 6 0 0 1 6-6z" fill="#FDE2EF"/>
+<path d="M84 44v10a4 4 0 0 0 4 4h10z" fill="url(#dl-g)" opacity=".5"/>
+<rect x="50" y="84" width="36" height="16" rx="4" fill="url(#dl-g)"/>
+<text x="68" y="96" fill="#fff" font-size="10" font-weight="600" text-anchor="middle">PDF</text>
+<rect x="114" y="50" width="96" height="8" rx="4" fill="#DDE1E6"/>
+<text x="114" y="78" fill="#6B7280">2.4 MB</text>
+<rect x="114" y="98" width="160" height="7" rx="3.5" fill="#EBEEF1"/>
+<rect class="dl-bar" x="114" y="98" width="160" height="7" rx="3.5" fill="url(#dl-g)" transform="translate(34.2 0) scale(.7 1)"/>
+<text x="114" y="128" fill="#9D174D" font-weight="600">Downloading</text>
+<circle cx="256" cy="62" r="18" fill="url(#dl-g)"/>
+<g class="dl-arr"><path d="M256 52v15m-6-6 6 6 6-6" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></g>
+<path d="M248 72h16" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>
+</g>
+</svg>

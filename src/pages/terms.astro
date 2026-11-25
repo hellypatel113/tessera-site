@@ -1,0 +1,46 @@
+---
+import { link } from "../lib/link";
+import Layout from "../layouts/Layout.astro";
+import { SITE } from "../data/site";
+
+// Draft: have it reviewed by a lawyer before launch.
+const updated = "25 November 2026";
+---
+<Layout title="Terms of service" description="The terms for using the Tessera Shopify app.">
+  <section class="section">
+    <article class="container prose">
+      <h1>Terms of service</h1>
+      <p class="muted">Last updated {updated}</p>
+
+      <p>These terms apply to your use of the {SITE.name} Shopify app ("the app"). By installing the app you agree to them. You must also follow Shopify's own terms of service.</p>
+
+      <h2>The service</h2>
+      <p>The app gives your Shopify store a set of features that you can switch on and off individually. We may add, improve or retire features. If we retire a feature you pay for, we will tell you in advance and stop charging for it.</p>
+
+      <h2>Fees and billing</h2>
+      <p>Installing the app is free. Each feature you switch on is charged at its listed monthly price through Shopify's billing, once per 30-day period while it stays on, within the monthly limit you approve. Switching a feature off stops its charges from the next period; the current period is not refunded. Uninstalling the app cancels billing. Prices may change with at least 30 days' notice, and Shopify will ask you to approve any higher limit.</p>
+
+      <h2>Your responsibilities</h2>
+      <ul>
+        <li>Use the app lawfully and keep your store's own policies, such as privacy and returns, up to date.</li>
+        <li>Check that features like age verification, cookie consent and checkout rules meet the rules that apply to your business. They are tools, not legal advice.</li>
+        <li>Test discounts, price changes and checkout rules before relying on them for a sale.</li>
+      </ul>
+
+      <h2>Your data</h2>
+      <p>You own your store's data. We process it only to provide the app, as described in our <a href={link("/privacy/")}>privacy policy</a>.</p>
+
+      <h2>Availability</h2>
+      <p>We work to keep the app running at all times, but we can't guarantee it will be free of interruptions or errors. Features that run inside Shopify, such as checkout rules and discounts, also depend on Shopify's services.</p>
+
+      <h2>Limitation of liability</h2>
+      <p>To the extent the law allows, the app is provided "as is", and our total liability for any claim is limited to the fees you paid us in the three months before the claim. We are not liable for indirect losses such as lost profits or lost sales.</p>
+
+      <h2>Ending</h2>
+      <p>You can stop using the app at any time by uninstalling it. We may suspend the app for a store that breaks these terms or Shopify's terms.</p>
+
+      <h2>Contact</h2>
+      <p><a href={`mailto:${SITE.email}`}>{SITE.email}</a></p>
+    </article>
+  </section>
+</Layout>

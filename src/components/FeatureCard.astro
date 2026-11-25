@@ -1,0 +1,42 @@
+---
+import { link } from "../lib/link";
+import type { Feature } from "../data/modules";
+import { categoryOf } from "../data/categories";
+
+interface Props {
+  feature: Feature;
+  loading?: "eager" | "lazy";
+  delay?: number;
+}
+
+const { feature, loading = "lazy", delay = 0 } = Astro.props;
+const category = categoryOf(feature.category);
+---
+<a
+  href={link(`/features/${feature.key}/`)}
+  class="fcard"
+  data-reveal
+  data-category={feature.category}
+  style={`--from:${category.from};--to:${category.to};--delay:${delay}s`}
+>
+  <div class="fcard__art">
+    <img
+      src={link(`/modules/${feature.key}.svg`)}
+      alt=""
+      width="320"
+      height="180"
+      loading={loading}
+      decoding="async"
+      onerror={`this.onerror=null;this.src='${link("/modules/fallback.svg")}'`}
+    />
+  </div>
+  <div class="fcard__body">
+    <span class="fcard__cat">{category.name}</span>
+    <h3 class="fcard__name">{feature.name}</h3>
+    <p class="fcard__summary">{feature.summary}</p>
+    <div class="fcard__foot">
+      <span class="fcard__price">${feature.price}/mo</span>
+      <span class="fcard__more">Learn more <span class="arrow">›</span></span>
+    </div>
+  </div>
+</a>

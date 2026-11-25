@@ -1,0 +1,47 @@
+---
+import { link } from "../lib/link";
+import Logo from "./Logo.astro";
+import { CATEGORIES } from "../data/categories";
+import { SITE } from "../data/site";
+
+const year = new Date().getFullYear();
+---
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <Logo />
+        <p style="margin-top:12px;max-width:300px">{SITE.tagline} Switch on what you need, pay only for that.</p>
+      </div>
+      <div>
+        <h4>Features</h4>
+        <ul>
+          {CATEGORIES.slice(0, 6).map((category) => (
+            <li><a href={link(`/features/#${category.key}`)}>{category.name}</a></li>
+          ))}
+          <li><a href={link("/features/")}>All features</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Tessera</h4>
+        <ul>
+          <li><a href={link("/pricing/")}>Pricing</a></li>
+          <li><a href={link("/#why")}>Why Tessera</a></li>
+          <li><a href={link("/#faq")}>FAQ</a></li>
+          <li><a href={link("/contact/")}>Contact and support</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href={link("/privacy/")}>Privacy policy</a></li>
+          <li><a href={link("/terms/")}>Terms of service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__base">
+      <span>© {year} {SITE.company}. All rights reserved.</span>
+      <span>Shopify is a trademark of Shopify Inc. Tessera is an independent app.</span>
+    </div>
+  </div>
+</footer>

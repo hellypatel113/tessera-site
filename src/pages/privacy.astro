@@ -1,0 +1,71 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { SITE } from "../data/site";
+
+// Draft written from what the app actually stores and sends. Have it reviewed
+// by a lawyer before the App Store submission, and update the date when it changes.
+const updated = "25 November 2026";
+---
+<Layout title="Privacy policy" description="How the Tessera Shopify app collects, uses and protects merchant and customer data.">
+  <section class="section">
+    <article class="container prose">
+      <h1>Privacy policy</h1>
+      <p class="muted">Last updated {updated}</p>
+
+      <p>{SITE.name} ("we", "us") provides a Shopify app that adds features such as reviews, wishlists, loyalty, forms and checkout rules to Shopify stores. This policy explains what information the app collects when a merchant installs it, how we use it, and the choices merchants and their customers have.</p>
+
+      <h2>Information we collect</h2>
+      <p><strong>From merchants.</strong> When you install the app, Shopify gives us your store's domain, store name, contact email, currency and the access permissions you approve. We store the settings you create in the app, such as offers, rules, forms and designs.</p>
+      <p><strong>From your store, through Shopify's API.</strong> Depending on which features you switch on, the app reads products, collections, inventory levels, discounts, markets and orders. Order data is used for features such as order tracking, invoices, loyalty points, buy again, unpaid order reminders, review requests and digital downloads. By default the app can read orders from the last 60 days.</p>
+      <p><strong>From your customers.</strong> Only when a feature that needs it is switched on, the app stores:</p>
+      <ul>
+        <li>name, email address and review text, ratings, photos and videos submitted with a review or question;</li>
+        <li>email addresses left for back-in-stock or price-drop alerts, and wishlist contents for logged-in customers;</li>
+        <li>loyalty points, referral codes and birthdays for customers who join a rewards program;</li>
+        <li>answers submitted through forms and post-purchase surveys;</li>
+        <li>contact and delivery details entered in the cash on delivery order form, which are used to create the order in Shopify.</li>
+      </ul>
+      <p><strong>Technical data.</strong> Broken-link tracking records the addresses of pages that were not found. Our servers keep standard logs, such as IP addresses and request times, for security and troubleshooting.</p>
+
+      <h2>How we use information</h2>
+      <ul>
+        <li>to provide each feature the merchant switches on;</li>
+        <li>to send emails the merchant enables, such as review requests, restock alerts, download links and payment reminders, on the merchant's behalf;</li>
+        <li>to bill the merchant through Shopify for the features they use;</li>
+        <li>to keep the service secure, prevent spam and fix problems.</li>
+      </ul>
+      <p>We do not sell personal information, and we do not use merchants' or customers' data for our own advertising.</p>
+
+      <h2>Sharing with third parties</h2>
+      <p>We use a small number of service providers to run the app, each bound to protect the data they process:</p>
+      <ul>
+        <li>cloud hosting and database providers, to run the app and store its data;</li>
+        <li>an email delivery provider, to send the emails merchants enable;</li>
+        <li>an error monitoring service, to detect and fix faults;</li>
+        <li>Cloudflare Turnstile, if the merchant enables spam protection on forms and reviews.</li>
+      </ul>
+      <p><strong>Destinations the merchant chooses.</strong> If a merchant connects analytics or advertising platforms (Google Analytics, Google Tag Manager, Meta, TikTok, Pinterest, Mixpanel or Klaviyo), store and checkout events are sent to the accounts the merchant provides. For purchases sent from our server, email addresses and phone numbers are hashed before they leave. Browser events respect the visitor's consent as recorded by Shopify's customer privacy settings. If a merchant connects Instagram, we read their posts to display them in the store.</p>
+
+      <h2>Data retention and deletion</h2>
+      <p>We keep data for as long as the app is installed and the merchant uses the relevant feature. We respond to Shopify's privacy requests:</p>
+      <ul>
+        <li><strong>Customer data requests:</strong> we provide the merchant with the data we hold about a customer.</li>
+        <li><strong>Customer redaction:</strong> we delete or anonymise that customer's personal information.</li>
+        <li><strong>Shop redaction:</strong> after a merchant uninstalls the app, Shopify asks us to delete the store's data, and we delete it.</li>
+      </ul>
+      <p>Photos and videos attached to reviews, and files uploaded through forms, are stored in the merchant's own Shopify Files and remain under the merchant's control.</p>
+
+      <h2>Security</h2>
+      <p>Data is sent over encrypted connections, access to our systems is restricted, and the app requests only the Shopify permissions its features need.</p>
+
+      <h2>Your rights</h2>
+      <p>Depending on where you live, you may have the right to access, correct, delete or move your personal information, or to object to its use. Customers of a store should contact that store first, since the store decides how its data is used; we will help the store respond. Merchants can contact us directly.</p>
+
+      <h2>Changes</h2>
+      <p>We will update this page when our practices change and change the date above.</p>
+
+      <h2>Contact</h2>
+      <p>Questions about privacy: <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</p>
+    </article>
+  </section>
+</Layout>

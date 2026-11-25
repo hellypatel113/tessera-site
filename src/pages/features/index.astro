@@ -1,0 +1,60 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import FeatureCard from "../../components/FeatureCard.astro";
+import { FEATURES } from "../../data/modules";
+import { CATEGORIES } from "../../data/categories";
+
+const groups = CATEGORIES.map((category) => ({
+  category,
+  features: FEATURES.filter((feature) => feature.category === category.key),
+})).filter((group) => group.features.length > 0);
+---
+<Layout title="All features" description={`All ${FEATURES.length} Tessera features: reviews, bundles, wishlists, loyalty, checkout rules, sale manager, analytics and more, in one Shopify app.`}>
+  <section class="fhero">
+    <div class="container center">
+      <p class="eyebrow" data-reveal><span class="eyebrow__dot"></span>All features</p>
+      <h1 class="display" data-reveal style="--delay:.08s;margin-top:14px">{FEATURES.length} features.<br /><span class="gradient-text">One app.</span></h1>
+      <p class="lead" data-reveal style="--delay:.16s;max-width:640px;margin:22px auto 0">Every one built to replace a separate app. Switch on any of them in a click.</p>
+    </div>
+  </section>
+
+  <nav class="jump" aria-label="Categories">
+    <div class="container jump__inner">
+      {groups.map(({ category, features }) => (
+        <a href={`#${category.key}`} style={`--from:${category.from};--to:${category.to}`}>
+          <span class="jump__dot"></span>{category.name}<small>{features.length}</small>
+        </a>
+      ))}
+    </div>
+  </nav>
+
+  {groups.map(({ category, features }) => (
+    <section class="group" id={category.key} style={`--from:${category.from};--to:${category.to}`}>
+      <div class="container">
+        <header class="group__head" data-reveal>
+          <h2 class="h2 group__title">{category.name}</h2>
+          <p class="lead">{category.description}</p>
+        </header>
+        <div class="grid grid--3">
+          {features.map((feature, index) => <FeatureCard feature={feature} delay={(index % 3) * 0.08} />)}
+        </div>
+      </div>
+    </section>
+  ))}
+</Layout>
+
+<style>
+  .fhero { padding-block: clamp(64px, 10vw, 120px) clamp(40px, 6vw, 64px); background: radial-gradient(50% 70% at 50% 0%, rgb(236 72 153 / 10%), transparent 70%), radial-gradient(40% 60% at 15% 10%, rgb(124 58 237 / 12%), transparent 70%); }
+  .jump { position: sticky; top: 60px; z-index: 40; background: rgb(251 251 253 / 80%); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid rgb(0 0 0 / 6%); }
+  .jump__inner { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; padding-block: 10px; }
+  .jump__inner::-webkit-scrollbar { display: none; }
+  .jump a { flex: none; display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 99px; font-size: 14px; font-weight: 500; color: var(--ink-2); transition: background 0.2s; }
+  .jump a:hover { background: var(--surface-2); }
+  .jump small { color: var(--muted); font-size: 12px; }
+  .jump__dot { width: 10px; height: 10px; border-radius: 50%; background: linear-gradient(135deg, var(--from), var(--to)); }
+  .group { padding-block: clamp(56px, 8vw, 96px); scroll-margin-top: 110px; }
+  .group:nth-of-type(even) { background: var(--surface-2); }
+  .group__head { margin-bottom: 36px; max-width: 760px; }
+  .group__title { background: linear-gradient(90deg, var(--from), var(--to)); -webkit-background-clip: text; background-clip: text; color: transparent; padding-bottom: 4px; }
+  .group__head .lead { margin-top: 10px; }
+</style>

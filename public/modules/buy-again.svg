@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" width="320" height="180" role="img">
+<title>A past order with a Buy again button; its items flow into the cart in one tap.</title>
+<style>
+.ba-f{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif}
+@media (prefers-reduced-motion: no-preference){
+.ba-b0{animation:ba-d0 11s ease-in-out infinite alternate}.ba-b1{animation:ba-d1 9s ease-in-out infinite alternate}.ba-b2{animation:ba-d0 12s ease-in-out infinite alternate-reverse}
+@keyframes ba-d0{from{transform:translate(0,0)}to{transform:translate(18px,12px)}}@keyframes ba-d1{from{transform:translate(0,0)}to{transform:translate(-20px,-10px)}}
+.ba-fly{animation:ba-fly 5s ease-in-out infinite}
+.ba-fly2{animation-delay:.3s}
+@keyframes ba-fly{0%,24%{opacity:0;transform:translate(0,0) scale(1)}30%{opacity:1;transform:translate(0,0) scale(1)}62%{opacity:1;transform:translate(178px,-6px) scale(.6)}68%,100%{opacity:0;transform:translate(178px,-6px) scale(.6)}}
+.ba-badge{transform-box:fill-box;transform-origin:center;animation:ba-pop 5s ease-in-out infinite}
+@keyframes ba-pop{0%,64%,100%{transform:scale(1)}72%{transform:scale(1.25)}80%{transform:scale(1)}}
+.ba-btn{transform-box:fill-box;transform-origin:center;animation:ba-press 5s ease-in-out infinite}
+@keyframes ba-press{0%,14%,30%,100%{transform:scale(1)}22%{transform:scale(.94)}}
+}
+</style>
+<defs><linearGradient id="ba-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2563EB"/><stop offset="1" stop-color="#06B6D4"/></linearGradient><radialGradient id="ba-r0"><stop offset="0" stop-color="#E879F9" stop-opacity=".75"/><stop offset="1" stop-color="#E879F9" stop-opacity="0"/></radialGradient><radialGradient id="ba-r1"><stop offset="0" stop-color="#60A5FA" stop-opacity=".75"/><stop offset="1" stop-color="#60A5FA" stop-opacity="0"/></radialGradient><radialGradient id="ba-r2"><stop offset="0" stop-color="#FCD34D" stop-opacity=".75"/><stop offset="1" stop-color="#FCD34D" stop-opacity="0"/></radialGradient></defs>
+<rect width="320" height="180" fill="#F4F1FA"/>
+<circle class="ba-b0" cx="40" cy="30" r="130" fill="url(#ba-r0)"/>
+<circle class="ba-b1" cx="300" cy="160" r="140" fill="url(#ba-r1)"/>
+<circle class="ba-b2" cx="250" cy="10" r="100" fill="url(#ba-r2)"/>
+<rect x="20" y="21" width="176" height="144" rx="12" fill="#1E1B4B" opacity=".09"/>
+<rect x="20" y="18" width="176" height="144" rx="12" fill="#fff"/>
+<g class="ba-f" font-size="11">
+<text x="34" y="42" fill="#1F2433" font-size="12" font-weight="600">Order #1038</text>
+<text x="34" y="57" fill="#6B7280">Delivered</text>
+<rect x="34" y="68" width="40" height="40" rx="8" fill="#DCEBFF"/><circle cx="54" cy="88" r="11" fill="url(#ba-g)" opacity=".55"/>
+<rect x="82" y="68" width="40" height="40" rx="8" fill="#DCEBFF"/><rect x="93" y="78" width="18" height="20" rx="5" fill="#1E40AF" opacity=".45"/>
+<rect x="130" y="68" width="40" height="40" rx="8" fill="#DCEBFF"/><path d="M150 77l11 21h-22z" fill="url(#ba-g)" opacity=".5"/>
+<g class="ba-btn"><rect x="34" y="122" width="136" height="26" rx="13" fill="url(#ba-g)"/>
+<text x="102" y="139" fill="#fff" font-weight="600" text-anchor="middle">Buy again</text></g>
+<g class="ba-fly" opacity="0"><rect x="34" y="68" width="40" height="40" rx="8" fill="#DCEBFF"/><circle cx="54" cy="88" r="11" fill="url(#ba-g)" opacity=".55"/></g>
+<g class="ba-fly ba-fly2" opacity="0"><rect x="82" y="68" width="40" height="40" rx="8" fill="#DCEBFF"/><rect x="93" y="78" width="18" height="20" rx="5" fill="#1E40AF" opacity=".45"/></g>
+<rect x="216" y="49" width="84" height="84" rx="12" fill="#1E1B4B" opacity=".09"/>
+<rect x="216" y="46" width="84" height="84" rx="12" fill="#fff"/>
+<path d="M234 70h7l7 30h30l6-22h-40" fill="none" stroke="#1F2433" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="252" cy="108" r="3.4" fill="#1F2433"/><circle cx="274" cy="108" r="3.4" fill="#1F2433"/>
+<g class="ba-badge"><circle cx="286" cy="58" r="10" fill="url(#ba-g)"/><text x="286" y="62" fill="#fff" font-weight="600" text-anchor="middle">3</text></g>
+</g>
+</svg>

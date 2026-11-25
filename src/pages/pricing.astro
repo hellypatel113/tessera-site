@@ -1,0 +1,68 @@
+---
+import { link } from "../lib/link";
+import Layout from "../layouts/Layout.astro";
+import PriceCalculator from "../components/PriceCalculator.astro";
+import { FEATURES, TOTAL_PRICE } from "../data/modules";
+import { SITE } from "../data/site";
+
+const cheapest = Math.min(...FEATURES.map((feature) => feature.price));
+const steps = [
+  { title: "Install free", text: "Installing costs nothing. Nothing is charged until you switch a feature on." },
+  { title: "Approve once", text: "The first time you switch a feature on, Shopify asks you to approve a monthly limit. You do this once." },
+  { title: "Pay per feature", text: "Each feature that's on is charged its monthly price on your Shopify invoice, every 30 days." },
+  { title: "Change any time", text: "Switch features off and their charges stop from the next period. Your setup is kept." },
+];
+---
+<Layout title="Pricing" description={`Pay only for the Tessera features you switch on, from $${cheapest} a month each. Free to install.`}>
+  <section class="phero">
+    <div class="container center">
+      <p class="eyebrow" data-reveal><span class="eyebrow__dot"></span>Pricing</p>
+      <h1 class="display" data-reveal style="--delay:.08s;margin-top:14px">Pay for what you use.<br /><span class="gradient-text">Nothing else.</span></h1>
+      <p class="lead" data-reveal style="--delay:.16s;max-width:640px;margin:22px auto 0">Free to install. Features from ${cheapest} a month each. No tiers, no bundles you don't need, no annual lock-in.</p>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="container"><PriceCalculator /></div>
+  </section>
+
+  <section class="section section--grey">
+    <div class="container">
+      <div class="section-head center">
+        <h2 class="h2">How billing works.</h2>
+        <p class="lead">Simple, through Shopify, and always in your control.</p>
+      </div>
+      <ol class="bill">
+        {steps.map((step, index) => (
+          <li data-reveal style={`--delay:${index * 0.08}s`}>
+            <span class="bill__n">{index + 1}</span>
+            <h3>{step.title}</h3>
+            <p class="muted">{step.text}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container center">
+      <h2 class="h2">Everything on? ${TOTAL_PRICE}/mo.</h2>
+      <p class="lead" style="margin:16px auto 28px;max-width:620px">That's all {FEATURES.length} features, from reviews to checkout rules to analytics, in one app with one bill.</p>
+      <div class="btn-row"><a class="btn btn--primary" href={SITE.installUrl}>Install free on Shopify</a><a class="btn btn--ghost" href={link("/features/")}>Compare features <span class="arrow">›</span></a></div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .phero { padding-block: clamp(64px, 10vw, 120px) clamp(32px, 5vw, 56px); background: radial-gradient(50% 70% at 50% 0%, rgb(249 115 22 / 10%), transparent 70%), radial-gradient(40% 60% at 85% 10%, rgb(124 58 237 / 12%), transparent 70%); }
+  .bill { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .bill li { padding: 28px; border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); display: grid; gap: 10px; align-content: start; }
+  .bill h3 { font-size: 20px; }
+  .bill p { font-size: 15px; }
+  .bill__n { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; color: #fff; font-weight: 700; background: linear-gradient(135deg, #7c3aed, #ec4899); }
+  .bill li:nth-child(2) .bill__n { background: linear-gradient(135deg, #ec4899, #f97316); }
+  .bill li:nth-child(3) .bill__n { background: linear-gradient(135deg, #f97316, #f59e0b); }
+  .bill li:nth-child(4) .bill__n { background: linear-gradient(135deg, #14b8a6, #2563eb); }
+  @media (max-width: 900px) { .bill { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 520px) { .bill { grid-template-columns: 1fr; } }
+</style>

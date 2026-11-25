@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" width="320" height="180" role="img">
+<title>A social photo feed embedded in the store: a three by two grid of colourful posts, one of them a video, with a small camera badge.</title>
+<style>
+.if-f{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif}
+@media (prefers-reduced-motion: no-preference){
+.if-b0{animation:if-d0 11s ease-in-out infinite alternate}.if-b1{animation:if-d1 9s ease-in-out infinite alternate}.if-b2{animation:if-d0 12s ease-in-out infinite alternate-reverse}
+@keyframes if-d0{from{transform:translate(0,0)}to{transform:translate(18px,12px)}}@keyframes if-d1{from{transform:translate(0,0)}to{transform:translate(-20px,-10px)}}
+.if-sh{animation:if-sh 6s ease-in-out infinite}
+.if-d1{animation-delay:.5s}.if-d2{animation-delay:1s}.if-d3{animation-delay:1.5s}.if-d4{animation-delay:2s}.if-d5{animation-delay:2.5s}
+@keyframes if-sh{0%,100%{opacity:0}8%{opacity:.55}20%{opacity:0}}
+}
+</style>
+<defs><linearGradient id="if-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#10B981"/><stop offset="1" stop-color="#0891B2"/></linearGradient><radialGradient id="if-r0"><stop offset="0" stop-color="#A78BFA" stop-opacity=".75"/><stop offset="1" stop-color="#A78BFA" stop-opacity="0"/></radialGradient><radialGradient id="if-r1"><stop offset="0" stop-color="#FCD34D" stop-opacity=".75"/><stop offset="1" stop-color="#FCD34D" stop-opacity="0"/></radialGradient><radialGradient id="if-r2"><stop offset="0" stop-color="#60A5FA" stop-opacity=".75"/><stop offset="1" stop-color="#60A5FA" stop-opacity="0"/></radialGradient></defs>
+<rect width="320" height="180" fill="#F4F1FA"/>
+<circle class="if-b0" cx="40" cy="30" r="130" fill="url(#if-r0)"/>
+<circle class="if-b1" cx="300" cy="160" r="140" fill="url(#if-r1)"/>
+<circle class="if-b2" cx="250" cy="10" r="100" fill="url(#if-r2)"/>
+<rect x="52" y="15" width="216" height="154" rx="12" fill="#1E1B4B" opacity=".09"/>
+<rect x="52" y="12" width="216" height="154" rx="12" fill="#fff"/>
+<g class="if-f">
+<rect x="64" y="24" width="60" height="60" rx="8" fill="#FFE0D1"/><circle cx="94" cy="48" r="10" fill="#F97362"/><path d="M64 84v-14l16-10 14 8 16-12 14 10v18z" fill="#F97362" opacity=".55"/><rect class="if-sh " x="64" y="24" width="60" height="60" rx="8" fill="#fff" opacity="0"/>
+<rect x="130" y="24" width="60" height="60" rx="8" fill="#DDE7FF"/><circle cx="160" cy="54" r="16" fill="#4F7DF3" opacity=".8"/><rect class="if-sh if-d1" x="130" y="24" width="60" height="60" rx="8" fill="#fff" opacity="0"/>
+<rect x="196" y="24" width="60" height="60" rx="8" fill="#FFF1C2"/><path d="M226 38l17 32h-34z" fill="#E9A100" opacity=".75"/><rect class="if-sh if-d2" x="196" y="24" width="60" height="60" rx="8" fill="#fff" opacity="0"/>
+<rect x="64" y="90" width="60" height="60" rx="8" fill="#D8F4EA"/><rect x="82" y="104" width="24" height="32" rx="6" fill="#10A37A" opacity=".8"/><rect class="if-sh if-d3" x="64" y="90" width="60" height="60" rx="8" fill="#fff" opacity="0"/>
+<rect x="130" y="90" width="60" height="60" rx="8" fill="#EFE3FF"/><rect x="144" y="110" width="32" height="26" rx="6" fill="#8B5CF6" opacity=".5"/><circle cx="160" cy="120" r="11" fill="#fff"/><path d="M157 115v10l8-5z" fill="#1F2433"/><rect class="if-sh if-d4" x="130" y="90" width="60" height="60" rx="8" fill="#fff" opacity="0"/>
+<rect x="196" y="90" width="60" height="60" rx="8" fill="#FFDDEB"/><circle cx="226" cy="120" r="16" fill="#E0457B" opacity=".8"/><rect class="if-sh if-d5" x="196" y="90" width="60" height="60" rx="8" fill="#fff" opacity="0"/>
+<circle cx="262" cy="18" r="15" fill="url(#if-g)" stroke="#fff" stroke-width="2.5"/>
+<rect x="254" y="12" width="16" height="13" rx="4" fill="none" stroke="#fff" stroke-width="1.8"/>
+<circle cx="262" cy="18.5" r="3.4" fill="none" stroke="#fff" stroke-width="1.8"/>
+</g>
+</svg>

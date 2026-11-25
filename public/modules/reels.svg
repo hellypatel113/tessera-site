@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" width="320" height="180" role="img">
+<title>Three vertical shoppable video cards, each tagged with a product; the middle video plays with a progress bar and a Shop button.</title>
+<style>
+.rl-f{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif}
+@media (prefers-reduced-motion: no-preference){
+.rl-b0{animation:rl-d0 11s ease-in-out infinite alternate}.rl-b1{animation:rl-d1 9s ease-in-out infinite alternate}.rl-b2{animation:rl-d0 12s ease-in-out infinite alternate-reverse}
+@keyframes rl-d0{from{transform:translate(0,0)}to{transform:translate(18px,12px)}}@keyframes rl-d1{from{transform:translate(0,0)}to{transform:translate(-20px,-10px)}}
+.rl-bar{transform-box:fill-box;transform-origin:left;animation:rl-bar 5s linear infinite}
+@keyframes rl-bar{0%{transform:scaleX(.45)}55%{transform:scaleX(1);opacity:1}60%{transform:scaleX(1);opacity:0}62%{transform:scaleX(0);opacity:0}64%{transform:scaleX(0);opacity:1}100%{transform:scaleX(.45)}}
+.rl-mid{transform-box:fill-box;transform-origin:center;animation:rl-mid 5s ease-in-out infinite}
+@keyframes rl-mid{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+}
+</style>
+<defs><linearGradient id="rl-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F2600C"/><stop offset="1" stop-color="#F7A21B"/></linearGradient><radialGradient id="rl-r0"><stop offset="0" stop-color="#60A5FA" stop-opacity=".75"/><stop offset="1" stop-color="#60A5FA" stop-opacity="0"/></radialGradient><radialGradient id="rl-r1"><stop offset="0" stop-color="#5EEAD4" stop-opacity=".75"/><stop offset="1" stop-color="#5EEAD4" stop-opacity="0"/></radialGradient><radialGradient id="rl-r2"><stop offset="0" stop-color="#FB7185" stop-opacity=".75"/><stop offset="1" stop-color="#FB7185" stop-opacity="0"/></radialGradient></defs>
+<rect width="320" height="180" fill="#F4F1FA"/>
+<circle class="rl-b0" cx="160" cy="-10" r="120" fill="url(#rl-r0)"/>
+<circle class="rl-b1" cx="10" cy="180" r="130" fill="url(#rl-r1)"/>
+<circle class="rl-b2" cx="320" cy="150" r="130" fill="url(#rl-r2)"/>
+<g class="rl-f" font-size="11">
+<rect x="40" y="25" width="64" height="112" rx="11" fill="#1F2433" opacity=".1"/>
+<rect x="40" y="22" width="64" height="112" rx="11" fill="#D3F2E6"/>
+<circle cx="72" cy="56" r="11" fill="#2FB386"/><path d="M50 134v-34c0-14 44-14 44 0v34z" fill="#2FB386" opacity=".75"/>
+<circle cx="72" cy="80" r="12" fill="#fff" opacity=".92"/><path d="M68.5 74.5v11l9-5.5z" fill="#1F2433"/>
+<rect x="216" y="25" width="64" height="112" rx="11" fill="#1F2433" opacity=".1"/>
+<rect x="216" y="22" width="64" height="112" rx="11" fill="#DCE6FF"/>
+<rect x="232" y="44" width="32" height="44" rx="8" fill="#7C93F0" opacity=".8"/><path d="M216 134v-26l20-14 20 12 24-16v33a11 11 0 0 1-11 11h-42a11 11 0 0 1-11-11z" fill="#7C93F0" opacity=".5"/>
+<circle cx="248" cy="80" r="12" fill="#fff" opacity=".92"/><path d="M244.5 74.5v11l9-5.5z" fill="#1F2433"/>
+<g class="rl-mid">
+<rect x="120" y="15" width="80" height="128" rx="12" fill="#1F2433" opacity=".14"/>
+<rect x="120" y="12" width="80" height="128" rx="12" fill="#FFE9D6"/>
+<circle cx="160" cy="48" r="13" fill="url(#rl-g)" opacity=".75"/><path d="M134 140v-40c0-18 52-18 52 0v40z" fill="url(#rl-g)" opacity=".55"/>
+<rect x="134" y="104" width="52" height="20" rx="10" fill="#fff"/>
+<path d="M142 110h7l-1 8h-5z" fill="url(#rl-g)"/>
+<text x="168" y="118" fill="#1F2433" font-size="10.5" font-weight="600" text-anchor="middle">Shop</text>
+<rect x="130" y="130" width="60" height="3" rx="1.5" fill="#1F2433" opacity=".15"/>
+<rect class="rl-bar" x="130" y="130" width="60" height="3" rx="1.5" fill="#B6400B" transform="translate(71.5 0) scale(.45 1)"/>
+</g>
+<rect x="44" y="144" width="56" height="20" rx="10" fill="#fff"/><rect x="49" y="148" width="12" height="12" rx="3" fill="#D3F2E6"/><text x="80" y="158" fill="#1F2433" font-size="10.5" font-weight="600" text-anchor="middle">$24</text>
+<rect x="128" y="150" width="64" height="20" rx="10" fill="url(#rl-g)"/><rect x="133" y="154" width="12" height="12" rx="3" fill="#fff" opacity=".85"/><text x="166" y="164" fill="#fff" font-size="10.5" font-weight="600" text-anchor="middle">$38</text>
+<rect x="220" y="144" width="56" height="20" rx="10" fill="#fff"/><rect x="225" y="148" width="12" height="12" rx="3" fill="#DCE6FF"/><text x="256" y="158" fill="#1F2433" font-size="10.5" font-weight="600" text-anchor="middle">$19</text>
+</g>
+</svg>

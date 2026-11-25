@@ -1,0 +1,138 @@
+---
+import { FEATURES } from "../data/modules";
+import { CATEGORIES } from "../data/categories";
+
+interface Props {
+  /** Feature keys switched on when the page loads. */
+  preset?: string[];
+  compact?: boolean;
+}
+
+const { preset = ["reviews", "wishlist", "quantity-breaks", "sale-manager", "analytics"], compact = false } = Astro.props;
+const groups = CATEGORIES.map((category) => ({
+  category,
+  features: FEATURES.filter((feature) => feature.category === category.key),
+})).filter((group) => group.features.length > 0);
+---
+<div class="calc" data-calc>
+  <div class="calc__picker">
+    {groups.map(({ category, features }) => (
+      <fieldset class="calc__group">
+        <legend style={`--from:${category.from};--to:${category.to}`}>{category.name}</legend>
+        <div class="calc__chips">
+          {features.map((feature) => (
+            <label class="chip" style={`--from:${category.from};--to:${category.to}`}>
+              <input type="checkbox" value={feature.key} data-price={feature.price} checked={preset.includes(feature.key)} />
+              <span class="chip__body">
+                <span class="chip__check" aria-hidden="true"></span>
+                {feature.name}
+                <span class="chip__price">${feature.price}</span>
+              </span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
+    ))}
+  </div>
+  <aside class="calc__total" aria-live="polite">
+    <p class="calc__label">Your monthly bill</p>
+    <p class="calc__amount">$<span data-total>0</span><small>/mo</small></p>
+    <p class="calc__count"><span data-count>0</span> of {FEATURES.length} features on</p>
+    <div class="calc__bar"><span data-bar></span></div>
+    <p class="calc__note">Everything you leave off costs nothing. Switch features on or off any time from the app's home screen.</p>
+    <div class="calc__actions">
+      <button type="button" class="btn btn--light" data-all>Switch all on</button>
+      <button type="button" class="btn btn--ghost" data-none>Clear</button>
+    </div>
+    {!compact && <p class="calc__fine">Billed through your Shopify invoice. Each feature is charged once per 30-day period while it is on.</p>}
+  </aside>
+</div>
+
+<style>
+  .calc { display: grid; grid-template-columns: 1fr 360px; gap: 32px; align-items: start; }
+  .calc__picker { display: grid; gap: 22px; }
+  .calc__group { border: 0; margin: 0; padding: 0; }
+  .calc__group legend {
+    padding: 0; margin-bottom: 10px; font-size: 13px; font-weight: 700; letter-spacing: 0.02em; text-transform: uppercase;
+    background: linear-gradient(90deg, var(--from), var(--to)); -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .calc__chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip input { position: absolute; opacity: 0; pointer-events: none; }
+  .chip__body {
+    display: inline-flex; align-items: center; gap: 8px; cursor: pointer; user-select: none;
+    padding: 9px 14px 9px 10px; border-radius: 999px; font-size: 15px; font-weight: 500;
+    background: var(--surface); border: 1px solid var(--line);
+    transition: background 0.3s var(--ease), color 0.3s, border-color 0.3s, transform 0.2s var(--ease);
+  }
+  .chip__body:active { transform: scale(0.96); }
+  .chip__check { width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid #c7c7cc; display: grid; place-items: center; transition: inherit; }
+  .chip__price { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
+  .chip input:checked + .chip__body { background: linear-gradient(135deg, var(--from), var(--to)); color: #fff; border-color: transparent; }
+  .chip input:checked + .chip__body .chip__price { color: rgb(255 255 255 / 85%); }
+  .chip input:checked + .chip__body .chip__check { border-color: #fff; background: #fff; }
+  .chip input:checked + .chip__body .chip__check::after { content: ""; width: 8px; height: 4px; border: 2px solid var(--from); border-top: 0; border-right: 0; transform: translateY(-1px) rotate(-45deg); }
+  .chip input:focus-visible + .chip__body { outline: 3px solid var(--violet); outline-offset: 2px; }
+
+  .calc__total {
+    position: sticky; top: 84px; padding: 28px; border-radius: var(--radius-lg);
+    background: #0b0b0f; color: #f5f5f7; box-shadow: var(--shadow-lg); overflow: hidden;
+  }
+  .calc__total::before { content: ""; position: absolute; inset: -40% -20% auto auto; width: 260px; height: 260px; border-radius: 50%; background: radial-gradient(circle, rgb(236 72 153 / 45%), transparent 70%); pointer-events: none; }
+  .calc__label { color: #a1a1a6; font-size: 15px; }
+  .calc__amount { font-size: 72px; font-weight: 700; letter-spacing: -0.04em; line-height: 1; margin: 8px 0 6px; font-variant-numeric: tabular-nums; }
+  .calc__amount small { font-size: 20px; color: #a1a1a6; font-weight: 500; letter-spacing: 0; }
+  .calc__count { color: #a1a1a6; font-size: 15px; }
+  .calc__bar { height: 6px; border-radius: 6px; background: #2c2c2e; margin: 18px 0; overflow: hidden; }
+  .calc__bar span { display: block; height: 100%; width: 0; background: var(--spectrum); border-radius: inherit; transition: width 0.6s var(--ease); }
+  .calc__note { font-size: 15px; color: #d2d2d7; }
+  .calc__actions { display: flex; gap: 8px; margin-top: 20px; }
+  .calc__actions .btn { min-height: 40px; padding: 8px 16px; font-size: 15px; }
+  .calc__actions .btn--ghost { color: #a1a1a6; }
+  .calc__fine { margin-top: 16px; font-size: 13px; color: #86868b; }
+
+  @media (max-width: 900px) {
+    .calc { grid-template-columns: 1fr; }
+    .calc__total { position: sticky; bottom: 12px; top: auto; order: 2; padding: 20px 22px; }
+    .calc__amount { font-size: 52px; }
+    .calc__note, .calc__fine { display: none; }
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-calc]").forEach((root) => {
+    const boxes = [...root.querySelectorAll<HTMLInputElement>("input[type=checkbox]")];
+    const totalEl = root.querySelector<HTMLElement>("[data-total]");
+    const countEl = root.querySelector<HTMLElement>("[data-count]");
+    const barEl = root.querySelector<HTMLElement>("[data-bar]");
+    const max = boxes.reduce((sum, box) => sum + Number(box.dataset.price), 0);
+    let shown = 0;
+    let frame = 0;
+
+    const animateTo = (target: number) => {
+      cancelAnimationFrame(frame);
+      const start = shown;
+      const startedAt = performance.now();
+      const step = (now: number) => {
+        const t = Math.min(1, (now - startedAt) / 450);
+        const eased = 1 - Math.pow(1 - t, 3);
+        shown = Math.round(start + (target - start) * eased);
+        if (totalEl) totalEl.textContent = String(shown);
+        if (t < 1) frame = requestAnimationFrame(step);
+      };
+      frame = requestAnimationFrame(step);
+    };
+
+    const update = () => {
+      const on = boxes.filter((box) => box.checked);
+      const total = on.reduce((sum, box) => sum + Number(box.dataset.price), 0);
+      animateTo(total);
+      if (countEl) countEl.textContent = String(on.length);
+      if (barEl) barEl.style.width = `${(total / max) * 100}%`;
+    };
+
+    boxes.forEach((box) => box.addEventListener("change", update));
+    root.querySelector("[data-all]")?.addEventListener("click", () => { boxes.forEach((box) => (box.checked = true)); update(); });
+    root.querySelector("[data-none]")?.addEventListener("click", () => { boxes.forEach((box) => (box.checked = false)); update(); });
+    update();
+  });
+</script>

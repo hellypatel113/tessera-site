@@ -1,0 +1,41 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { SITE } from "../data/site";
+
+const cards = [
+  { title: "Support", text: "Something not working, or a question about a feature? Send us the details and we'll get back to you.", subject: "Support request", color: "#7C3AED" },
+  { title: "Setup help", text: "Want a hand switching from your current apps or placing widgets in your theme? We'll help.", subject: "Setup help", color: "#EC4899" },
+  { title: "Feature ideas", text: "Tell us what your store needs next. The roadmap is shaped by merchants.", subject: "Feature idea", color: "#14B8A6" },
+];
+---
+<Layout title="Contact and support" description="Get help with Tessera, set it up, or suggest a feature.">
+  <section class="section">
+    <div class="container">
+      <div class="section-head center">
+        <p class="eyebrow" data-reveal><span class="eyebrow__dot"></span>Contact</p>
+        <h1 class="display" data-reveal style="--delay:.08s;margin-top:14px">We're here to help.</h1>
+        <p class="lead" data-reveal style="--delay:.16s">Real people, fast answers. Email us at <a href={`mailto:${SITE.email}`} style="color:var(--blue)">{SITE.email}</a>.</p>
+      </div>
+      <div class="cards">
+        {cards.map((card, index) => (
+          <a class="ccard" href={`mailto:${SITE.email}?subject=${encodeURIComponent(card.subject)}`} data-reveal style={`--c:${card.color};--delay:${index * 0.08}s`}>
+            <span class="ccard__dot"></span>
+            <h2>{card.title}</h2>
+            <p class="muted">{card.text}</p>
+            <span class="ccard__link">Email us <span class="arrow">›</span></span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .ccard { padding: 32px; border-radius: var(--radius-lg); background: var(--surface); box-shadow: var(--shadow); display: grid; gap: 12px; align-content: start; transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease); }
+  .ccard:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+  .ccard h2 { font-size: 24px; }
+  .ccard__dot { width: 44px; height: 44px; border-radius: 14px; background: linear-gradient(135deg, var(--c), color-mix(in srgb, var(--c) 40%, #fff)); }
+  .ccard__link { color: var(--blue); font-weight: 500; margin-top: 8px; }
+  @media (max-width: 860px) { .cards { grid-template-columns: 1fr; } }
+</style>

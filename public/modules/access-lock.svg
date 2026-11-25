@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" width="320" height="180" role="img">
+<title>Store pages hidden behind a padlock; an approved customer badge unlocks them.</title>
+<style>
+.al-f{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif}
+@media (prefers-reduced-motion: no-preference){
+.al-b0{animation:al-d0 11s ease-in-out infinite alternate}.al-b1{animation:al-d1 9s ease-in-out infinite alternate}.al-b2{animation:al-d0 12s ease-in-out infinite alternate-reverse}
+@keyframes al-d0{from{transform:translate(0,0)}to{transform:translate(18px,12px)}}@keyframes al-d1{from{transform:translate(0,0)}to{transform:translate(-20px,-10px)}}
+.al-badge{animation:al-b 6s ease-in-out infinite}
+.al-sh{animation:al-sh 6s ease-in-out infinite}
+.al-veil{animation:al-v 6s ease-in-out infinite}
+.al-lock{animation:al-l 6s ease-in-out infinite}
+@keyframes al-b{0%,10%{transform:translateX(0)}28%,72%{transform:translateX(-14px)}88%,100%{transform:translateX(0)}}
+@keyframes al-sh{0%,26%{transform:translateY(0)}34%,74%{transform:translateY(-7px)}84%,100%{transform:translateY(0)}}
+@keyframes al-v{0%,32%{opacity:.78}44%,72%{opacity:0}84%,100%{opacity:.78}}
+@keyframes al-l{0%,36%{opacity:1}46%,70%{opacity:0}80%,100%{opacity:1}}
+}
+</style>
+<defs><linearGradient id="al-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7C3AED"/><stop offset="1" stop-color="#EC4899"/></linearGradient><radialGradient id="al-r0"><stop offset="0" stop-color="#A78BFA" stop-opacity=".75"/><stop offset="1" stop-color="#A78BFA" stop-opacity="0"/></radialGradient><radialGradient id="al-r1"><stop offset="0" stop-color="#FCD34D" stop-opacity=".75"/><stop offset="1" stop-color="#FCD34D" stop-opacity="0"/></radialGradient><radialGradient id="al-r2"><stop offset="0" stop-color="#60A5FA" stop-opacity=".75"/><stop offset="1" stop-color="#60A5FA" stop-opacity="0"/></radialGradient></defs>
+<rect width="320" height="180" fill="#F4F1FA"/>
+<circle class="al-b0" cx="40" cy="30" r="130" fill="url(#al-r0)"/>
+<circle class="al-b1" cx="300" cy="160" r="140" fill="url(#al-r1)"/>
+<circle class="al-b2" cx="250" cy="10" r="100" fill="url(#al-r2)"/>
+<rect x="22" y="21" width="176" height="144" rx="12" fill="#1E1B4B" opacity=".09"/>
+<rect x="22" y="18" width="176" height="144" rx="12" fill="#fff"/>
+<g class="al-f" font-size="11">
+<rect x="36" y="32" width="70" height="8" rx="4" fill="#DDE1E6"/>
+<rect x="36" y="50" width="44" height="44" rx="7" fill="#EEE6FF"/><circle cx="58" cy="72" r="11" fill="url(#al-g)" opacity=".6"/>
+<rect x="88" y="50" width="44" height="44" rx="7" fill="#EEE6FF"/><path d="M110 60l11 22h-22z" fill="url(#al-g)" opacity=".6"/>
+<rect x="140" y="50" width="44" height="44" rx="7" fill="#EEE6FF"/><rect x="152" y="62" width="20" height="20" rx="5" fill="#5B21B6" opacity=".45"/>
+<rect x="36" y="104" width="44" height="6" rx="3" fill="#DDE1E6"/><rect x="88" y="104" width="38" height="6" rx="3" fill="#DDE1E6"/><rect x="140" y="104" width="40" height="6" rx="3" fill="#DDE1E6"/>
+<rect x="36" y="124" width="148" height="24" rx="7" fill="#EBEEF1"/>
+<rect class="al-veil" x="22" y="18" width="176" height="144" rx="12" fill="#F3F4F6" opacity=".78"/>
+<g class="al-lock">
+<path class="al-sh" d="M100 82v-9a10 10 0 0 1 20 0v9" fill="none" stroke="#1F2433" stroke-width="4.5" stroke-linecap="round"/>
+<rect x="92" y="80" width="36" height="30" rx="7" fill="url(#al-g)"/>
+<circle cx="110" cy="92" r="3.4" fill="#fff"/><rect x="108.6" y="93" width="2.8" height="8" rx="1.4" fill="#fff"/>
+</g>
+<g class="al-badge">
+<rect x="212" y="53" width="92" height="76" rx="12" fill="#1E1B4B" opacity=".09"/>
+<rect x="212" y="50" width="92" height="76" rx="12" fill="#fff"/>
+<circle cx="234" cy="72" r="11" fill="#EEE6FF"/><circle cx="234" cy="69" r="4" fill="#5B21B6" opacity=".7"/><path d="M226.5 79c2-5.5 13-5.5 15 0" fill="#5B21B6" opacity=".7"/>
+<rect x="251" y="66" width="40" height="6" rx="3" fill="#DDE1E6"/><rect x="251" y="77" width="28" height="6" rx="3" fill="#EBEEF1"/>
+<rect x="224" y="96" width="68" height="18" rx="9" fill="url(#al-g)"/>
+<text x="258" y="108.5" fill="#fff" font-size="10" font-weight="600" text-anchor="middle">Approved</text>
+</g>
+</g>
+</svg>

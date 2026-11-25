@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" width="320" height="180" role="img">
+<title>A contact form whose name, email and message fields fill in, then a Sent check appears.</title>
+<style>
+.fm-f{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif}
+@media (prefers-reduced-motion: no-preference){
+.fm-b0{animation:fm-d0 11s ease-in-out infinite alternate}.fm-b1{animation:fm-d1 9s ease-in-out infinite alternate}.fm-b2{animation:fm-d0 12s ease-in-out infinite alternate-reverse}
+@keyframes fm-d0{from{transform:translate(0,0)}to{transform:translate(18px,12px)}}@keyframes fm-d1{from{transform:translate(0,0)}to{transform:translate(-20px,-10px)}}
+.fm-in{transform-box:fill-box;transform-origin:left;animation:fm-in 6s ease-in-out infinite}
+.fm-d2{animation-delay:.5s}.fm-d3{animation-delay:1s}.fm-d4{animation-delay:1.3s}
+@keyframes fm-in{0%,6%{transform:scaleX(1)}12%,18%{transform:scaleX(0)}34%,100%{transform:scaleX(1)}}
+.fm-ok{transform-box:fill-box;transform-origin:center;animation:fm-ok 6s ease-in-out infinite}
+@keyframes fm-ok{0%,6%{opacity:1;transform:scale(1)}12%,52%{opacity:0;transform:scale(.6)}62%,100%{opacity:1;transform:scale(1)}}
+}
+</style>
+<defs><linearGradient id="fm-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0EA5E9"/><stop offset="1" stop-color="#6366F1"/></linearGradient><radialGradient id="fm-r0"><stop offset="0" stop-color="#60A5FA" stop-opacity=".75"/><stop offset="1" stop-color="#60A5FA" stop-opacity="0"/></radialGradient><radialGradient id="fm-r1"><stop offset="0" stop-color="#E879F9" stop-opacity=".75"/><stop offset="1" stop-color="#E879F9" stop-opacity="0"/></radialGradient><radialGradient id="fm-r2"><stop offset="0" stop-color="#FCD34D" stop-opacity=".75"/><stop offset="1" stop-color="#FCD34D" stop-opacity="0"/></radialGradient></defs>
+<rect width="320" height="180" fill="#F4F1FA"/>
+<circle class="fm-b0" cx="20" cy="100" r="120" fill="url(#fm-r0)"/>
+<circle class="fm-b1" cx="280" cy="40" r="130" fill="url(#fm-r1)"/>
+<circle class="fm-b2" cx="200" cy="190" r="110" fill="url(#fm-r2)"/>
+<rect x="40" y="15" width="240" height="154" rx="12" fill="#1E1B4B" opacity=".09"/>
+<rect x="40" y="12" width="240" height="154" rx="12" fill="#fff"/>
+<g class="fm-f" font-size="11">
+<text x="56" y="34" fill="#1F2433" font-size="12" font-weight="600">Contact us</text>
+<text x="56" y="54" fill="#6B7280" font-size="10">Name</text>
+<rect x="56" y="58" width="100" height="22" rx="6" fill="#fff" stroke="#D3D7DD"/>
+<rect class="fm-in" x="64" y="66" width="54" height="6" rx="3" fill="#9AA3AD"/>
+<text x="164" y="54" fill="#6B7280" font-size="10">Email</text>
+<rect x="164" y="58" width="100" height="22" rx="6" fill="#fff" stroke="#D3D7DD"/>
+<rect class="fm-in fm-d2" x="172" y="66" width="70" height="6" rx="3" fill="#9AA3AD"/>
+<text x="56" y="96" fill="#6B7280" font-size="10">Message</text>
+<rect x="56" y="100" width="208" height="30" rx="6" fill="#fff" stroke="#D3D7DD"/>
+<rect class="fm-in fm-d3" x="64" y="107" width="150" height="6" rx="3" fill="#9AA3AD"/>
+<rect class="fm-in fm-d4" x="64" y="117" width="96" height="6" rx="3" fill="#9AA3AD"/>
+<rect x="56" y="138" width="70" height="22" rx="11" fill="url(#fm-g)"/>
+<text x="91" y="153" fill="#fff" font-weight="600" text-anchor="middle">Send</text>
+<g class="fm-ok">
+<circle cx="146" cy="149" r="8" fill="#E0ECFF"/>
+<path d="M142.2 149.2l2.6 2.6 5-5.4" fill="none" stroke="#3443C4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="159" y="153" fill="#3443C4" font-weight="600">Sent</text>
+</g>
+</g>
+</svg>

@@ -1,0 +1,455 @@
+---
+import { link } from "../lib/link";
+import Layout from "../layouts/Layout.astro";
+import FeatureCard from "../components/FeatureCard.astro";
+import PriceCalculator from "../components/PriceCalculator.astro";
+import DesignDemo from "../components/DesignDemo.astro";
+import { FEATURES, findFeature } from "../data/modules";
+import { CATEGORIES, categoryOf } from "../data/categories";
+import { SITE } from "../data/site";
+
+// Three rows for the hero mosaic, each a different slice of the features.
+const rows = [FEATURES.slice(0, 12), FEATURES.slice(12, 24), FEATURES.slice(22).concat(FEATURES.slice(0, 2))];
+
+const spotlights = [
+  {
+    key: "reviews",
+    eyebrow: "Trust",
+    title: "A full reviews platform. Not a plugin.",
+    text: "Photo and video reviews, Q&A, eight widget layouts, star ratings on every product card and in Google, review request emails, bulk moderation and one-click import from your old app.",
+    points: ["Eight layouts on any page", "Import from Judge.me, Loox, Yotpo, Stamped, Okendo", "Google star ratings"],
+  },
+  {
+    key: "sale-manager",
+    eyebrow: "Sell more",
+    title: "Black Friday in five minutes. Undone in one click.",
+    text: "Discount products or whole collections, preview every new price, export it to a spreadsheet, schedule the start and end, and put every price back exactly as it was.",
+    points: ["Preview every variant before it changes", "Schedule start and end", "One-click revert"],
+  },
+  {
+    key: "cod-rules",
+    eyebrow: "Checkout",
+    title: "Checkout, shaped around your business.",
+    text: "Hide cash on delivery above a cart total, rename delivery options, block PO boxes, set minimum orders. Payment, shipping and checkout rules run natively inside Shopify checkout, on every plan.",
+    points: ["Payment rules", "Shipping rules", "Checkout validation"],
+  },
+  {
+    key: "analytics",
+    eyebrow: "Marketing",
+    title: "Every pixel. Zero code.",
+    text: "Connect GA4, Tag Manager, Meta, TikTok, Pinterest, Mixpanel and Klaviyo in minutes, including checkout events and server-side purchases for better ad attribution.",
+    points: ["7 destinations", "Checkout events included", "Server-side purchase events"],
+  },
+  {
+    key: "reels",
+    eyebrow: "Social",
+    title: "Your videos, now shoppable.",
+    text: "Upload vertical videos, tag products, and show them as a slider, grid or stories anywhere in your store. Pair it with your live Instagram feed.",
+    points: ["Slider, grid or story circles", "Floating stories bubble", "Shoppable Instagram posts"],
+  },
+];
+
+// "a wishlist app" → "Wishlist app"
+const chaos = FEATURES.slice(0, 14).map((feature) => {
+  const label = feature.replaces.replace(/^(a|an) /, "");
+  return label.charAt(0).toUpperCase() + label.slice(1);
+});
+
+const faqs = [
+  { q: "Do I need a developer to set it up?", a: "No. Every storefront feature is added from Shopify's theme editor as a block or an app embed, and every colour, corner, font and word can be changed in the app with a live preview. Each feature page in the app has step-by-step instructions." },
+  { q: "Will it slow down my store?", a: "Features that are switched off publish nothing to your storefront. Features that are on load only where you place them, through Shopify's theme app extensions, so your theme's code is never edited." },
+  { q: "Which Shopify plans does it work on?", a: "All of them. Discounts, payment rules, shipping rules and checkout rules are built on Shopify Functions, which run natively inside Shopify's checkout on every plan for apps from the Shopify App Store." },
+  { q: "How does billing work?", a: "You approve one monthly limit through Shopify once. Each feature you switch on is charged its monthly price on your normal Shopify invoice. Switch a feature off and its charges stop from the next 30-day period." },
+  { q: "What happens to my setup if I switch a feature off?", a: "It is kept. Its discounts are paused and it disappears from your storefront, and when you switch it back on everything is exactly as you left it." },
+  { q: "Can I move from my current apps?", a: "Yes. Reviews import from Judge.me, Loox, Yotpo, Stamped and Okendo, redirects import from CSV, and everything you create can be exported again." },
+  { q: "What happens if I uninstall?", a: "Billing stops straight away, and Shopify removes the app's blocks and embeds from your theme. No leftover code." },
+];
+---
+<Layout>
+  <!-- ───────────── Hero ───────────── -->
+  <section class="hero">
+    <div class="container hero__copy center">
+      <p class="eyebrow" data-reveal><span class="eyebrow__dot"></span>{FEATURES.length} apps. One install.</p>
+      <h1 class="display hero__title" data-reveal style="--delay:.08s">
+        Every app your store needs.<br /><span class="gradient-text">One install.</span>
+      </h1>
+      <p class="lead hero__lead" data-reveal style="--delay:.16s">
+        Reviews, bundles, wishlists, loyalty, checkout rules, sales, analytics and {FEATURES.length - 7} more, built to work together. Switch on what you need. Pay only for that.
+      </p>
+      <div class="btn-row" data-reveal style="--delay:.24s">
+        <a class="btn btn--primary" href={SITE.installUrl}>Install free on Shopify</a>
+        <a class="btn btn--ghost" href={link("/features/")}>Explore all features <span class="arrow">›</span></a>
+      </div>
+    </div>
+
+    <div class="mosaic" data-mosaic aria-hidden="true">
+      <div class="mosaic__plane">
+        {rows.map((row, rowIndex) => (
+          <div class={`mosaic__row mosaic__row--${rowIndex}`}>
+            {[...row, ...row].map((feature) => (
+              <div class="tile" style={`--from:${categoryOf(feature.category).from};--to:${categoryOf(feature.category).to}`}>
+                <img src={link(`/modules/${feature.key}.svg`)} alt="" width="320" height="180" loading={rowIndex === 0 ? "eager" : "lazy"} />
+                <span>{feature.name}</span>
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────── Stats ───────────── -->
+  <section class="section--tight">
+    <div class="container stats">
+      {[
+        [String(FEATURES.length), "features in one app"],
+        ["1", "admin, one bill, one support team"],
+        ["$0", "for every feature you leave off"],
+        ["All", "Shopify plans supported"],
+      ].map(([value, label], index) => (
+        <div class="stat" data-reveal style={`--delay:${index * 0.08}s`}>
+          <p class="stat__value gradient-text">{value}</p>
+          <p class="stat__label">{label}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ───────────── Why ───────────── -->
+  <section class="section section--grey" id="why">
+    <div class="container">
+      <div class="section-head center">
+        <p class="eyebrow"><span class="eyebrow__dot"></span>Why Tessera</p>
+        <h2 class="h2" style="margin-top:12px">A dozen apps is a dozen problems.</h2>
+        <p class="lead">Separate bills, separate dashboards, separate scripts and widgets that never quite match. Tessera replaces the pile with one app that was designed as a whole.</p>
+      </div>
+      <div class="compare">
+        <div class="compare__card compare__card--before" data-reveal>
+          <h3 class="h3">Without Tessera</h3>
+          <p class="muted">An app for everything, each with its own bill.</p>
+          <div class="chaos">
+            {chaos.map((label, index) => (
+              <span class="chaos__pill" style={`--i:${index}`}>{label}<em>+ bill</em></span>
+            ))}
+          </div>
+        </div>
+        <div class="compare__card compare__card--after" data-reveal style="--delay:.1s">
+          <h3 class="h3">With Tessera</h3>
+          <p class="compare__sub">One app. Flip on what you need.</p>
+          <ul class="toggles">
+            {["reviews", "wishlist", "quantity-breaks", "cod-rules", "loyalty", "analytics"].map((key, index) => {
+              const feature = findFeature(key);
+              return feature && (
+                <li class="toggle-row">
+                  <img src={link(`/modules/${feature.key}.svg`)} alt="" width="64" height="36" loading="lazy" />
+                  <span>{feature.name}</span>
+                  <span class={`switch ${index === 4 ? "" : "switch--on"}`} aria-hidden="true"><i></i></span>
+                </li>
+              );
+            })}
+          </ul>
+          <ul class="ticks">
+            <li>One admin, one design system, one bill</li>
+            <li>Every widget matches your brand</li>
+            <li>Features work together: wishlists trigger price-drop and restock emails, quick order pairs with wholesale prices</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────── Explorer ───────────── -->
+  <section class="section" id="explore">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow"><span class="eyebrow__dot"></span>Explore</p>
+        <h2 class="h2" style="margin-top:12px">Everything your store needs. <span class="muted">Really.</span></h2>
+      </div>
+      <div class="tabs" role="tablist" aria-label="Feature categories" data-tabs>
+        <button role="tab" aria-selected="true" data-filter="all">All</button>
+        {CATEGORIES.map((category) => (
+          <button role="tab" aria-selected="false" data-filter={category.key} style={`--from:${category.from};--to:${category.to}`}>{category.name}</button>
+        ))}
+      </div>
+    </div>
+    <div class="rail" data-rail>
+      {FEATURES.map((feature, index) => (
+        <div class="rail__item" data-category={feature.category}>
+          <FeatureCard feature={feature} loading={index < 4 ? "eager" : "lazy"} />
+        </div>
+      ))}
+    </div>
+    <div class="container rail__nav">
+      <a class="btn btn--ghost" href={link("/features/")}>See every feature in detail <span class="arrow">›</span></a>
+      <div class="rail__arrows">
+        <button type="button" aria-label="Scroll left" data-rail-prev>‹</button>
+        <button type="button" aria-label="Scroll right" data-rail-next>›</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────── Spotlights ───────────── -->
+  <section class="section section--grey">
+    <div class="container">
+      <div class="section-head center">
+        <p class="eyebrow"><span class="eyebrow__dot"></span>Spotlight</p>
+        <h2 class="h2" style="margin-top:12px">Not lite versions. <span class="gradient-text">The real thing.</span></h2>
+        <p class="lead">Each feature is built to stand against the best single-purpose app in its category.</p>
+      </div>
+      <div class="spots">
+        {spotlights.map((spot, index) => {
+          const feature = findFeature(spot.key);
+          if (!feature) return null;
+          const category = categoryOf(feature.category);
+          return (
+            <article class={`spot ${index % 2 ? "spot--flip" : ""}`} style={`--from:${category.from};--to:${category.to}`}>
+              <div class="spot__art" data-reveal>
+                <img src={link(`/modules/${feature.key}.svg`)} alt={`${feature.name} illustration`} width="320" height="180" loading="lazy" />
+              </div>
+              <div class="spot__copy" data-reveal style="--delay:.1s">
+                <span class="pill pill--grad">{spot.eyebrow}</span>
+                <h3 class="spot__title">{spot.title}</h3>
+                <p class="lead">{spot.text}</p>
+                <ul class="ticks">
+                  {spot.points.map((point) => <li>{point}</li>)}
+                </ul>
+                <a class="btn btn--ghost" href={link(`/features/${feature.key}/`)}>More about {feature.name.toLowerCase()} <span class="arrow">›</span></a>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────── Design ───────────── -->
+  <section class="section" id="design">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow"><span class="eyebrow__dot"></span>Make it yours</p>
+        <h2 class="h2" style="margin-top:12px">Your brand. Every widget.<br /><span class="muted">No developer needed.</span></h2>
+        <p class="lead">Try it. Every Tessera widget, from reviews to wishlists to pop-ups, takes its colours, corners and fonts from one design system you control.</p>
+      </div>
+      <DesignDemo />
+    </div>
+  </section>
+
+  <!-- ───────────── Pricing ───────────── -->
+  <section class="section section--grey" id="pricing">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow"><span class="eyebrow__dot"></span>Pricing</p>
+        <h2 class="h2" style="margin-top:12px">Pay for what you use.<br /><span class="gradient-text">Nothing else.</span></h2>
+        <p class="lead">Pick your features and watch your bill. Change it whenever your store changes.</p>
+      </div>
+      <PriceCalculator compact />
+    </div>
+  </section>
+
+  <!-- ───────────── Built on Shopify ───────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head center">
+        <p class="eyebrow"><span class="eyebrow__dot"></span>Under the hood</p>
+        <h2 class="h2" style="margin-top:12px">Built the Shopify way.</h2>
+        <p class="lead">Tessera uses Shopify's own building blocks, so it is fast, safe and leaves no mess behind.</p>
+      </div>
+      <div class="tech">
+        {[
+          { title: "Shopify Functions", text: "Discounts, payment, shipping and checkout rules run inside Shopify's checkout itself, on every plan.", color: "#7C3AED" },
+          { title: "Theme app extensions", text: "Widgets are blocks you place in the theme editor. Your theme's code is never touched.", color: "#EC4899" },
+          { title: "Checkout extensibility", text: "Thank-you page surveys and post-purchase offers use Shopify's upgrade-safe checkout extensions.", color: "#F97316" },
+          { title: "Customer events", text: "Analytics uses Shopify's web pixels, so checkout is tracked and visitor consent is respected.", color: "#14B8A6" },
+        ].map((item, index) => (
+          <div class="tech__card" data-reveal style={`--c:${item.color};--delay:${index * 0.08}s`}>
+            <span class="tech__dot"></span>
+            <h3>{item.title}</h3>
+            <p class="muted">{item.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────── FAQ ───────────── -->
+  <section class="section section--grey" id="faq">
+    <div class="container faq">
+      <div class="section-head">
+        <p class="eyebrow"><span class="eyebrow__dot"></span>FAQ</p>
+        <h2 class="h2" style="margin-top:12px">Questions, answered.</h2>
+      </div>
+      <div class="faq__list">
+        {faqs.map((item) => (
+          <details class="faq__item">
+            <summary>{item.q}<span class="faq__icon" aria-hidden="true"></span></summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────── CTA ───────────── -->
+  <section class="section cta">
+    <div class="container center">
+      <h2 class="display cta__title" data-reveal>Retire the pile.<br />Install Tessera.</h2>
+      <p class="lead cta__lead" data-reveal style="--delay:.1s">Free to install. Switch on your first feature in under a minute.</p>
+      <div class="btn-row" data-reveal style="--delay:.2s">
+        <a class="btn btn--light" href={SITE.installUrl}>Install free on Shopify</a>
+        <a class="btn btn--ghost cta__ghost" href={link("/contact/")}>Talk to us <span class="arrow">›</span></a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Hero */
+  .hero { position: relative; padding-top: clamp(64px, 10vw, 120px); overflow: hidden; }
+  .hero::before {
+    content: ""; position: absolute; inset: -20% -10% auto; height: 900px; pointer-events: none; z-index: -1;
+    background: radial-gradient(40% 50% at 20% 30%, rgb(124 58 237 / 18%), transparent 70%), radial-gradient(35% 45% at 80% 20%, rgb(236 72 153 / 16%), transparent 70%), radial-gradient(30% 40% at 60% 60%, rgb(20 184 166 / 14%), transparent 70%);
+    animation: drift 18s ease-in-out infinite alternate;
+  }
+  @keyframes drift { to { transform: translate3d(3%, 4%, 0) scale(1.05); } }
+  .hero__title { margin-top: 18px; }
+  .hero__lead { max-width: 720px; margin: 24px auto 32px; }
+
+  .mosaic { --p: 0; margin-top: clamp(48px, 8vw, 96px); perspective: 1400px; height: clamp(380px, 52vw, 620px); mask-image: linear-gradient(180deg, #000 60%, transparent); -webkit-mask-image: linear-gradient(180deg, #000 60%, transparent); }
+  .mosaic__plane { display: grid; gap: 20px; transform-origin: 50% 0; transform: rotateX(calc(28deg - var(--p) * 28deg)) scale(calc(1.04 - var(--p) * 0.04)); transition: transform 0.1s linear; }
+  .mosaic__row { display: flex; gap: 20px; width: max-content; animation: marquee 70s linear infinite; }
+  .mosaic__row--1 { animation-direction: reverse; animation-duration: 80s; margin-left: -160px; }
+  .mosaic__row--2 { animation-duration: 90s; margin-left: -80px; }
+  .mosaic:hover .mosaic__row { animation-play-state: paused; }
+  @keyframes marquee { to { transform: translateX(-50%); } }
+  .tile { position: relative; width: clamp(220px, 24vw, 320px); flex: none; border-radius: 20px; overflow: hidden; background: #fff; box-shadow: var(--shadow); }
+  .tile img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+  .tile span { position: absolute; left: 10px; bottom: 10px; padding: 5px 11px; border-radius: 99px; font-size: 13px; font-weight: 600; color: #fff; background: linear-gradient(135deg, var(--from), var(--to)); box-shadow: 0 4px 12px rgb(0 0 0 / 15%); }
+
+  /* Stats */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .stat { padding: 8px 0; border-top: 1px solid var(--line); padding-top: 24px; }
+  .stat__value { font-size: clamp(48px, 6vw, 80px); font-weight: 700; letter-spacing: -0.04em; line-height: 1; }
+  .stat__label { margin-top: 10px; color: var(--muted); }
+  @media (max-width: 760px) { .stats { grid-template-columns: 1fr 1fr; } }
+
+  /* Compare */
+  .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .compare__card { padding: clamp(24px, 4vw, 44px); border-radius: var(--radius-lg); background: var(--surface); box-shadow: var(--shadow); overflow: hidden; }
+  .compare__card .h3 { margin-bottom: 6px; }
+  .chaos { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+  .chaos__pill {
+    display: inline-flex; gap: 8px; align-items: center; padding: 9px 14px; border-radius: 12px; font-size: 14px;
+    background: var(--surface-2); border: 1px dashed #d2d2d7; color: var(--ink-2);
+    transform: rotate(calc((var(--i) - 6) * 0.6deg)); animation: wobble 4s ease-in-out infinite alternate; animation-delay: calc(var(--i) * -0.3s);
+  }
+  .chaos__pill em { font-style: normal; font-size: 12px; font-weight: 600; color: #dc2626; }
+  @keyframes wobble { to { transform: rotate(calc((6 - var(--i)) * 0.6deg)) translateY(-2px); } }
+  .compare__card--after { background: #0b0b0f; color: #f5f5f7; position: relative; }
+  .compare__card--after::before { content: ""; position: absolute; width: 420px; height: 420px; right: -160px; top: -160px; border-radius: 50%; background: radial-gradient(circle, rgb(124 58 237 / 45%), transparent 70%); }
+  .compare__sub { color: #a1a1a6; }
+  .toggles { list-style: none; padding: 0; margin: 24px 0; display: grid; gap: 8px; position: relative; }
+  .toggle-row { display: grid; grid-template-columns: 64px 1fr auto; gap: 14px; align-items: center; padding: 8px 10px; border-radius: 14px; background: #1c1c1f; }
+  .toggle-row img { border-radius: 8px; width: 64px; height: 36px; object-fit: cover; }
+  .switch { width: 44px; height: 26px; border-radius: 99px; background: #3a3a3c; position: relative; }
+  .switch i { position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; border-radius: 50%; background: #fff; transition: transform 0.4s var(--ease); }
+  .switch--on { background: linear-gradient(135deg, #7c3aed, #ec4899); }
+  .switch--on i { transform: translateX(18px); }
+  @media (max-width: 860px) { .compare { grid-template-columns: 1fr; } }
+
+  /* Tabs and rail */
+  .tabs { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; padding-bottom: 4px; margin-bottom: 28px; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tabs button { flex: none; border: 1px solid var(--line); background: var(--surface); padding: 10px 18px; border-radius: 99px; font-size: 15px; font-weight: 500; cursor: pointer; transition: all 0.3s var(--ease); }
+  .tabs button:hover { border-color: #c7c7cc; }
+  .tabs button[aria-selected="true"] { color: #fff; border-color: transparent; background: linear-gradient(135deg, var(--from, #1d1d1f), var(--to, #1d1d1f)); }
+  .rail {
+    display: flex; gap: 24px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
+    padding: 12px max(var(--gutter), calc((100vw - var(--max)) / 2 + var(--gutter))) 32px;
+    scroll-padding-inline: max(var(--gutter), calc((100vw - var(--max)) / 2 + var(--gutter)));
+  }
+  .rail::-webkit-scrollbar { display: none; }
+  .rail__item { flex: none; width: min(340px, 82vw); scroll-snap-align: start; display: flex; }
+  .rail__item[hidden] { display: none; }
+  .rail__item .fcard { width: 100%; }
+  .rail__nav { display: flex; justify-content: space-between; align-items: center; }
+  .rail__arrows { display: flex; gap: 10px; }
+  .rail__arrows button { width: 44px; height: 44px; border-radius: 50%; border: 0; background: #e8e8ed; font-size: 24px; line-height: 1; cursor: pointer; transition: background 0.2s; }
+  .rail__arrows button:hover { background: #d2d2d7; }
+
+  /* Spotlights */
+  .spots { display: grid; gap: clamp(64px, 10vw, 120px); }
+  .spot { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(32px, 6vw, 80px); align-items: center; }
+  .spot--flip .spot__art { order: 2; }
+  .spot__art { position: relative; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg); background: #f4f1fa; }
+  .spot__art::after { content: ""; position: absolute; inset: 0; border-radius: inherit; box-shadow: inset 0 0 0 1px rgb(0 0 0 / 5%); }
+  .spot__art img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+  .spot__copy { display: grid; gap: 18px; justify-items: start; }
+  .spot__title { font-size: clamp(30px, 3.6vw, 46px); letter-spacing: -0.03em; }
+  .spot .btn--ghost { padding-left: 0; }
+  @media (max-width: 860px) { .spot { grid-template-columns: 1fr; } .spot--flip .spot__art { order: 0; } }
+
+  /* Tech */
+  .tech { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .tech__card { padding: 28px; border-radius: var(--radius); background: var(--surface-2); display: grid; gap: 10px; align-content: start; }
+  .tech__card h3 { font-size: 20px; }
+  .tech__card p { font-size: 15px; }
+  .tech__dot { width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(135deg, var(--c), color-mix(in srgb, var(--c) 40%, #fff)); margin-bottom: 8px; box-shadow: 0 8px 20px color-mix(in srgb, var(--c) 35%, transparent); }
+  @media (max-width: 960px) { .tech { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 540px) { .tech { grid-template-columns: 1fr; } }
+
+  /* FAQ */
+  .faq { display: grid; grid-template-columns: 1fr 1.6fr; gap: 48px; }
+  .faq__list { display: grid; }
+  .faq__item { border-bottom: 1px solid #d2d2d7; }
+  .faq__item summary { list-style: none; cursor: pointer; padding: 22px 0; font-size: 19px; font-weight: 600; display: flex; justify-content: space-between; gap: 20px; align-items: center; }
+  .faq__item summary::-webkit-details-marker { display: none; }
+  .faq__icon { flex: none; width: 14px; height: 14px; position: relative; }
+  .faq__icon::before, .faq__icon::after { content: ""; position: absolute; left: 0; top: 6px; width: 14px; height: 2px; background: var(--ink); border-radius: 2px; transition: transform 0.3s var(--ease); }
+  .faq__icon::after { transform: rotate(90deg); }
+  .faq__item[open] .faq__icon::after { transform: rotate(0); }
+  .faq__item p { padding: 0 0 22px; color: var(--ink-2); max-width: 680px; }
+  @media (max-width: 860px) { .faq { grid-template-columns: 1fr; gap: 0; } }
+
+  /* CTA */
+  .cta { position: relative; overflow: hidden; background: #000; color: #f5f5f7; }
+  .cta::before { content: ""; position: absolute; inset: 0; background: radial-gradient(40% 60% at 20% 100%, rgb(124 58 237 / 55%), transparent 70%), radial-gradient(35% 55% at 80% 0%, rgb(236 72 153 / 45%), transparent 70%), radial-gradient(30% 50% at 60% 100%, rgb(249 115 22 / 35%), transparent 70%); animation: drift 14s ease-in-out infinite alternate; }
+  .cta .container { position: relative; }
+  .cta__lead { color: #a1a1a6; margin: 20px auto 32px; }
+  .cta__ghost { color: #fff; }
+</style>
+
+<script>
+  // Hero mosaic flattens as the visitor scrolls.
+  const mosaic = document.querySelector<HTMLElement>("[data-mosaic]");
+  if (mosaic && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    let ticking = false;
+    const update = () => {
+      const rect = mosaic.getBoundingClientRect();
+      const progress = Math.min(1, Math.max(0, 1 - rect.top / window.innerHeight));
+      mosaic.style.setProperty("--p", progress.toFixed(3));
+      ticking = false;
+    };
+    window.addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    update();
+  }
+
+  // Category tabs filter the rail.
+  const tabs = document.querySelectorAll<HTMLButtonElement>("[data-tabs] [data-filter]");
+  const rail = document.querySelector<HTMLElement>("[data-rail]");
+  tabs.forEach((tab) =>
+    tab.addEventListener("click", () => {
+      tabs.forEach((other) => other.setAttribute("aria-selected", String(other === tab)));
+      const filter = tab.dataset.filter;
+      rail?.querySelectorAll<HTMLElement>(".rail__item").forEach((item) => {
+        item.hidden = filter !== "all" && item.dataset.category !== filter;
+        item.querySelector("[data-reveal]")?.classList.add("is-visible");
+      });
+      rail?.scrollTo({ left: 0, behavior: "smooth" });
+    }),
+  );
+
+  // Rail arrows.
+  const scrollRail = (direction: number) => rail?.scrollBy({ left: direction * Math.min(rail.clientWidth * 0.8, 728), behavior: "smooth" });
+  document.querySelector("[data-rail-prev]")?.addEventListener("click", () => scrollRail(-1));
+  document.querySelector("[data-rail-next]")?.addEventListener("click", () => scrollRail(1));
+</script>

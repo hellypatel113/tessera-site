@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" width="320" height="180" role="img">
+<title>A sheet of product labels with prices; each barcode is drawn bar by bar.</title>
+<style>
+.bl-f{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif}
+@media (prefers-reduced-motion: no-preference){
+.bl-b0{animation:bl-d0 11s ease-in-out infinite alternate}.bl-b1{animation:bl-d1 9s ease-in-out infinite alternate}.bl-b2{animation:bl-d0 12s ease-in-out infinite alternate-reverse}
+@keyframes bl-d0{from{transform:translate(0,0)}to{transform:translate(18px,12px)}}@keyframes bl-d1{from{transform:translate(0,0)}to{transform:translate(-20px,-10px)}}
+.bl-c{transform-box:fill-box;transform-origin:right;animation:bl-draw 5s ease-in-out infinite}
+.bl-d2{animation-delay:.4s}.bl-d3{animation-delay:.8s}.bl-d4{animation-delay:1.2s}
+@keyframes bl-draw{0%,6%{opacity:0;transform:scaleX(1)}10%{opacity:1;transform:scaleX(1)}40%{opacity:1;transform:scaleX(0)}100%{opacity:1;transform:scaleX(0)}}
+}
+</style>
+<defs><linearGradient id="bl-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2563EB"/><stop offset="1" stop-color="#06B6D4"/></linearGradient><radialGradient id="bl-r0"><stop offset="0" stop-color="#A78BFA" stop-opacity=".75"/><stop offset="1" stop-color="#A78BFA" stop-opacity="0"/></radialGradient><radialGradient id="bl-r1"><stop offset="0" stop-color="#FCD34D" stop-opacity=".75"/><stop offset="1" stop-color="#FCD34D" stop-opacity="0"/></radialGradient><radialGradient id="bl-r2"><stop offset="0" stop-color="#60A5FA" stop-opacity=".75"/><stop offset="1" stop-color="#60A5FA" stop-opacity="0"/></radialGradient></defs>
+<rect width="320" height="180" fill="#F4F1FA"/>
+<circle class="bl-b0" cx="40" cy="30" r="130" fill="url(#bl-r0)"/>
+<circle class="bl-b1" cx="300" cy="160" r="140" fill="url(#bl-r1)"/>
+<circle class="bl-b2" cx="250" cy="10" r="100" fill="url(#bl-r2)"/>
+<rect x="24" y="17" width="272" height="150" rx="12" fill="#1E1B4B" opacity=".09"/>
+<rect x="24" y="14" width="272" height="150" rx="12" fill="#DCEBFF"/>
+<g class="bl-f" font-size="11">
+<rect x="34" y="26" width="118" height="56" rx="8" fill="#fff" stroke="#E3E6EA"/>
+<rect x="44" y="35" width="52" height="6" rx="3" fill="#DDE1E6"/>
+<text x="142" y="41" fill="#1E40AF" font-size="10" font-weight="600" text-anchor="end">$18</text>
+<path d="M0 0h2v22h-2zM3 0h1v22h-1zM6 0h1v22h-1zM10 0h1v22h-1zM12 0h2v22h-2zM15 0h1v22h-1zM18 0h3v22h-3zM22 0h1v22h-1zM25 0h1v22h-1zM27 0h2v22h-2zM31 0h1v22h-1zM33 0h3v22h-3z" transform="translate(44 48) scale(2.6 1)" fill="#1F2433"/>
+<rect class="bl-c " x="43" y="47" width="100" height="24" fill="#fff" opacity="0"/>
+<rect x="168" y="26" width="118" height="56" rx="8" fill="#fff" stroke="#E3E6EA"/>
+<rect x="178" y="35" width="52" height="6" rx="3" fill="#DDE1E6"/>
+<text x="276" y="41" fill="#1E40AF" font-size="10" font-weight="600" text-anchor="end">$24</text>
+<path d="M0 0h2v22h-2zM3 0h1v22h-1zM6 0h1v22h-1zM10 0h1v22h-1zM12 0h2v22h-2zM15 0h1v22h-1zM18 0h3v22h-3zM22 0h1v22h-1zM25 0h1v22h-1zM27 0h2v22h-2zM31 0h1v22h-1zM33 0h3v22h-3z" transform="translate(178 48) scale(2.6 1)" fill="#1F2433"/>
+<rect class="bl-c bl-d2" x="177" y="47" width="100" height="24" fill="#fff" opacity="0"/>
+<rect x="34" y="96" width="118" height="56" rx="8" fill="#fff" stroke="#E3E6EA"/>
+<rect x="44" y="105" width="52" height="6" rx="3" fill="#DDE1E6"/>
+<text x="142" y="111" fill="#1E40AF" font-size="10" font-weight="600" text-anchor="end">$9</text>
+<path d="M0 0h2v22h-2zM3 0h1v22h-1zM6 0h1v22h-1zM10 0h1v22h-1zM12 0h2v22h-2zM15 0h1v22h-1zM18 0h3v22h-3zM22 0h1v22h-1zM25 0h1v22h-1zM27 0h2v22h-2zM31 0h1v22h-1zM33 0h3v22h-3z" transform="translate(44 118) scale(2.6 1)" fill="#1F2433"/>
+<rect class="bl-c bl-d3" x="43" y="117" width="100" height="24" fill="#fff" opacity="0"/>
+<rect x="168" y="96" width="118" height="56" rx="8" fill="#fff" stroke="#E3E6EA"/>
+<rect x="178" y="105" width="52" height="6" rx="3" fill="#DDE1E6"/>
+<text x="276" y="111" fill="#1E40AF" font-size="10" font-weight="600" text-anchor="end">$32</text>
+<path d="M0 0h2v22h-2zM3 0h1v22h-1zM6 0h1v22h-1zM10 0h1v22h-1zM12 0h2v22h-2zM15 0h1v22h-1zM18 0h3v22h-3zM22 0h1v22h-1zM25 0h1v22h-1zM27 0h2v22h-2zM31 0h1v22h-1zM33 0h3v22h-3z" transform="translate(178 118) scale(2.6 1)" fill="#1F2433"/>
+<rect class="bl-c bl-d4" x="177" y="117" width="100" height="24" fill="#fff" opacity="0"/>
+</g>
+</svg>

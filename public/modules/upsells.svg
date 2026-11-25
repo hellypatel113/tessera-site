@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" width="320" height="180" role="img">
+<title>An order confirmation, with an offer card sliding up to add one more item at 15% off in one click.</title>
+<style>
+.up-f{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif}
+@media (prefers-reduced-motion: no-preference){
+.up-b0{animation:up-d0 11s ease-in-out infinite alternate}.up-b1{animation:up-d1 9s ease-in-out infinite alternate}.up-b2{animation:up-d0 12s ease-in-out infinite alternate-reverse}
+@keyframes up-d0{from{transform:translate(0,0)}to{transform:translate(18px,12px)}}@keyframes up-d1{from{transform:translate(0,0)}to{transform:translate(-20px,-10px)}}
+.up-o{animation:up-slide 5.5s ease-in-out infinite}
+@keyframes up-slide{0%,70%{transform:translateY(0);opacity:1}80%,86%{transform:translateY(90px);opacity:0}100%{transform:translateY(0);opacity:1}}
+}
+</style>
+<defs><linearGradient id="up-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#D9258A"/><stop offset="1" stop-color="#F9735B"/></linearGradient><radialGradient id="up-r0"><stop offset="0" stop-color="#5EEAD4" stop-opacity=".75"/><stop offset="1" stop-color="#5EEAD4" stop-opacity="0"/></radialGradient><radialGradient id="up-r1"><stop offset="0" stop-color="#FDBA74" stop-opacity=".75"/><stop offset="1" stop-color="#FDBA74" stop-opacity="0"/></radialGradient><radialGradient id="up-r2"><stop offset="0" stop-color="#A78BFA" stop-opacity=".75"/><stop offset="1" stop-color="#A78BFA" stop-opacity="0"/></radialGradient></defs>
+<rect width="320" height="180" fill="#F4F1FA"/>
+<circle class="up-b0" cx="160" cy="-10" r="120" fill="url(#up-r0)"/>
+<circle class="up-b1" cx="10" cy="180" r="130" fill="url(#up-r1)"/>
+<circle class="up-b2" cx="320" cy="150" r="130" fill="url(#up-r2)"/>
+<rect x="22" y="21" width="176" height="144" rx="12" fill="#1E1B4B" opacity=".09"/>
+<rect x="22" y="18" width="176" height="144" rx="12" fill="#fff"/>
+<g class="up-f" font-size="11">
+<circle cx="48" cy="44" r="12" fill="url(#up-g)"/>
+<path d="M42.5 44.5l3.8 3.8 7.2-7.6" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="68" y="41" fill="#1F2433" font-size="12" font-weight="600">Thank you!</text>
+<text x="68" y="55" fill="#6B7280">Order #1042</text>
+<rect x="36" y="74" width="120" height="6" rx="3" fill="#DDE1E6"/>
+<rect x="36" y="86" width="90" height="6" rx="3" fill="#EBEEF1"/>
+<rect x="36" y="98" width="104" height="6" rx="3" fill="#EBEEF1"/>
+<rect x="36" y="118" width="52" height="6" rx="3" fill="#EBEEF1"/>
+<rect x="36" y="130" width="40" height="6" rx="3" fill="#EBEEF1"/>
+<g class="up-o">
+<rect x="150" y="60" width="152" height="106" rx="12" fill="#1E1B4B" opacity=".1"/>
+<rect x="150" y="56" width="152" height="106" rx="12" fill="#fff" stroke="#D9258A" stroke-width="1.5"/>
+<rect x="162" y="68" width="40" height="40" rx="8" fill="#FDE2EF"/>
+<circle cx="182" cy="88" r="11" fill="url(#up-g)" opacity=".7"/>
+<text x="210" y="82" fill="#1F2433" font-weight="600">Add this?</text>
+<text x="210" y="98" fill="#6B7280" text-decoration="line-through">$20</text>
+<text x="236" y="98" fill="#9D174D" font-weight="600">$17</text>
+<rect x="162" y="120" width="128" height="28" rx="14" fill="url(#up-g)"/>
+<text x="226" y="138" fill="#fff" font-weight="600" text-anchor="middle">One-click add −15%</text>
+</g>
+</g>
+</svg>

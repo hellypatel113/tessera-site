@@ -1,0 +1,229 @@
+---
+import { link } from "../../lib/link";
+import Layout from "../../layouts/Layout.astro";
+import FeatureCard from "../../components/FeatureCard.astro";
+import { FEATURES, findFeature, type Feature } from "../../data/modules";
+import { categoryOf } from "../../data/categories";
+import { SITE } from "../../data/site";
+
+export function getStaticPaths() {
+  return FEATURES.map((feature, index) => ({
+    params: { key: feature.key },
+    props: {
+      feature,
+      previous: FEATURES[(index - 1 + FEATURES.length) % FEATURES.length],
+      next: FEATURES[(index + 1) % FEATURES.length],
+    },
+  }));
+}
+
+interface Props {
+  feature: Feature;
+  previous: Feature;
+  next: Feature;
+}
+
+const { feature, previous, next } = Astro.props;
+const category = categoryOf(feature.category);
+const related = feature.related.map(findFeature).filter((item): item is Feature => Boolean(item));
+const accent = `--from:${category.from};--to:${category.to}`;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: `${SITE.name}: ${feature.name}`,
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Shopify",
+  description: feature.summary,
+  offers: { "@type": "Offer", price: feature.price, priceCurrency: "USD" },
+};
+---
+<Layout title={`${feature.name} for Shopify`} description={feature.summary}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+  <div class="crumbs container" style={accent}>
+    <a href={link("/features/")}>Features</a><span>/</span><a href={link(`/features/#${category.key}`)}>{category.name}</a><span>/</span><strong>{feature.name}</strong>
+  </div>
+
+  <!-- Hero -->
+  <section class="dhero" style={accent}>
+    <div class="container dhero__grid">
+      <div class="dhero__copy">
+        <span class="pill pill--grad" data-reveal>{category.name}</span>
+        <h1 class="dhero__name" data-reveal style="--delay:.05s">{feature.name}</h1>
+        <p class="dhero__tagline" data-reveal style="--delay:.1s">{feature.tagline}</p>
+        <p class="lead" data-reveal style="--delay:.15s">{feature.summary}</p>
+        <div class="dhero__meta" data-reveal style="--delay:.2s">
+          <div><span class="muted">Price</span><strong>${feature.price}/mo</strong><small class="muted">only while it's on</small></div>
+          <div><span class="muted">Where it works</span><strong>{feature.appearsOn}</strong></div>
+        </div>
+        <div class="btn-row" data-reveal style="--delay:.25s">
+          <a class="btn btn--primary" href={SITE.installUrl}>Install free</a>
+          <a class="btn btn--ghost" href="#how">How it works <span class="arrow">›</span></a>
+        </div>
+      </div>
+      <div class="dhero__art" data-reveal style="--delay:.1s">
+        <div class="frame">
+          <div class="frame__bar"><i></i><i></i><i></i><span>yourstore.com</span></div>
+          <img src={link(`/modules/${feature.key}.svg`)} alt={`${feature.name} illustration`} width="320" height="180" loading="eager" onerror={`this.onerror=null;this.src='${link("/modules/fallback.svg")}'`} />
+        </div>
+        <div class="dhero__glow"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Highlights -->
+  <section class="section" style={accent}>
+    <div class="container">
+      <div class="section-head">
+        <h2 class="h2">Everything it does.</h2>
+        <p class="lead">Does the job of {feature.replaces}, inside the same app as everything else.</p>
+      </div>
+      <div class="hl">
+        {feature.highlights.map((item, index) => (
+          <article class="hl__card" data-reveal style={`--delay:${(index % 3) * 0.07}s`}>
+            <span class="hl__num">{String(index + 1).padStart(2, "0")}</span>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="section section--grey" id="how" style={accent}>
+    <div class="container how">
+      <div class="section-head how__head">
+        <p class="eyebrow"><span class="eyebrow__dot"></span>Setup</p>
+        <h2 class="h2" style="margin-top:12px">Live in minutes.</h2>
+        <p class="lead">No code. Every step is also explained inside the app, with buttons that open the right place in your theme editor.</p>
+        <div class="custom">
+          <h3>Make it look like your store</h3>
+          <p class="muted">Colours, corners, fonts and every word shoppers see are set in the app with a live preview.</p>
+        </div>
+      </div>
+      <ol class="steps">
+        {feature.steps.map((step, index) => (
+          <li class="step" data-reveal style={`--delay:${index * 0.06}s`}>
+            <span class="step__n">{index + 1}</span>
+            <p>{step}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- Good to know -->
+  {feature.notes.length > 0 && (
+    <section class="section--tight" style={accent}>
+      <div class="container">
+        <div class="know" data-reveal>
+          <h2 class="h3">Good to know</h2>
+          <ul>
+            {feature.notes.map((note) => <li>{note}</li>)}
+          </ul>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Related -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="h2">Works beautifully with</h2>
+        <p class="lead">Switch these on too. Same app, same design, same bill.</p>
+      </div>
+      <div class="grid grid--3">
+        {related.map((item, index) => <FeatureCard feature={item} delay={index * 0.08} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- Prev / next -->
+  <nav class="pn container" aria-label="More features">
+    <a href={link(`/features/${previous.key}/`)} class="pn__link">
+      <span class="muted">‹ Previous</span><strong>{previous.name}</strong>
+    </a>
+    <a href={link(`/features/${next.key}/`)} class="pn__link pn__link--next">
+      <span class="muted">Next ›</span><strong>{next.name}</strong>
+    </a>
+  </nav>
+
+  <section class="section dcta" style={accent}>
+    <div class="container center">
+      <h2 class="h2">{feature.name}, plus {FEATURES.length - 1} more.</h2>
+      <p class="lead" style="margin:16px auto 28px">Install Tessera free and switch on only what you need.</p>
+      <div class="btn-row">
+        <a class="btn btn--light" href={SITE.installUrl}>Install free on Shopify</a>
+        <a class="btn btn--ghost dcta__ghost" href={link("/pricing/")}>Build your plan <span class="arrow">›</span></a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .crumbs { display: flex; gap: 8px; flex-wrap: wrap; font-size: 13px; color: var(--muted); padding-top: 20px; }
+  .crumbs a:hover { color: var(--ink); }
+  .crumbs strong { color: var(--ink); font-weight: 500; }
+
+  .dhero { position: relative; padding-block: clamp(32px, 6vw, 72px) clamp(64px, 9vw, 112px); overflow: hidden; }
+  .dhero__grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: clamp(32px, 6vw, 72px); align-items: center; }
+  .dhero__copy { display: grid; gap: 18px; justify-items: start; }
+  .dhero__name { font-size: clamp(44px, 6vw, 80px); letter-spacing: -0.04em; }
+  .dhero__tagline { font-size: clamp(24px, 2.8vw, 34px); font-weight: 600; letter-spacing: -0.025em; line-height: 1.15; background: linear-gradient(90deg, var(--from), var(--to)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .dhero__meta { display: grid; grid-template-columns: auto 1fr; gap: 24px; padding: 18px 0; border-block: 1px solid var(--line); width: 100%; }
+  .dhero__meta div { display: grid; gap: 2px; }
+  .dhero__meta span { font-size: 13px; }
+  .dhero__meta strong { font-size: 17px; }
+  .dhero__meta small { font-size: 12px; }
+  .dhero__art { position: relative; }
+  .dhero__glow { position: absolute; inset: 10% -10% -10%; z-index: -1; background: radial-gradient(50% 50% at 30% 40%, color-mix(in srgb, var(--from) 40%, transparent), transparent 70%), radial-gradient(50% 50% at 70% 60%, color-mix(in srgb, var(--to) 35%, transparent), transparent 70%); filter: blur(30px); animation: drift 12s ease-in-out infinite alternate; }
+  @keyframes drift { to { transform: translate3d(4%, -3%, 0) scale(1.06); } }
+  .frame { border-radius: 22px; overflow: hidden; background: #fff; box-shadow: var(--shadow-lg); transform: perspective(1200px) rotateY(-6deg) rotateX(3deg); transition: transform 0.8s var(--ease); }
+  .frame:hover { transform: none; }
+  .frame__bar { display: flex; align-items: center; gap: 6px; padding: 12px 14px; background: #f5f5f7; border-bottom: 1px solid var(--line); }
+  .frame__bar i { width: 10px; height: 10px; border-radius: 50%; background: #ff5f57; }
+  .frame__bar i:nth-child(2) { background: #febc2e; }
+  .frame__bar i:nth-child(3) { background: #28c840; }
+  .frame__bar span { margin-left: 12px; flex: 1; text-align: center; font-size: 12px; color: var(--muted); background: #fff; padding: 4px 10px; border-radius: 8px; max-width: 240px; margin-inline: auto; }
+  .frame img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+  @media (max-width: 900px) { .dhero__grid { grid-template-columns: 1fr; } .dhero__art { order: -1; } .frame { transform: none; } }
+
+  .hl { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 20px; }
+  .hl__card { position: relative; padding: 30px 28px; border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); display: grid; gap: 10px; align-content: start; overflow: hidden; transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease); }
+  .hl__card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+  .hl__card::before { content: ""; position: absolute; inset: 0 0 auto; height: 4px; background: linear-gradient(90deg, var(--from), var(--to)); opacity: 0; transition: opacity 0.4s; }
+  .hl__card:hover::before { opacity: 1; }
+  .hl__num { font-size: 14px; font-weight: 700; background: linear-gradient(90deg, var(--from), var(--to)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hl__card h3 { font-size: 21px; letter-spacing: -0.02em; }
+  .hl__card p { color: var(--muted); font-size: 16px; }
+
+  .how { display: grid; grid-template-columns: 1fr 1.2fr; gap: clamp(32px, 6vw, 80px); align-items: start; }
+  .how__head { position: sticky; top: 100px; margin-bottom: 0; }
+  .custom { margin-top: 32px; padding: 22px 24px; border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); border-left: 4px solid var(--from); }
+  .custom h3 { font-size: 18px; margin-bottom: 6px; }
+  .custom p { font-size: 15px; }
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; counter-reset: s; }
+  .step { display: grid; grid-template-columns: 48px 1fr; gap: 18px; align-items: start; padding: 22px; border-radius: var(--radius); background: var(--surface); }
+  .step__n { width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center; color: #fff; font-weight: 700; font-size: 19px; background: linear-gradient(135deg, var(--from), var(--to)); box-shadow: 0 8px 20px color-mix(in srgb, var(--from) 30%, transparent); }
+  .step p { padding-top: 11px; color: var(--ink-2); }
+  @media (max-width: 900px) { .how { grid-template-columns: 1fr; } .how__head { position: static; } }
+
+  .know { padding: clamp(24px, 4vw, 40px); border-radius: var(--radius-lg); background: linear-gradient(135deg, color-mix(in srgb, var(--from) 8%, #fff), color-mix(in srgb, var(--to) 8%, #fff)); border: 1px solid color-mix(in srgb, var(--from) 15%, transparent); }
+  .know ul { margin: 14px 0 0; padding-left: 20px; display: grid; gap: 8px; color: var(--ink-2); }
+
+  .pn { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding-bottom: clamp(56px, 8vw, 96px); }
+  .pn__link { display: grid; gap: 4px; padding: 22px 24px; border-radius: var(--radius); background: var(--surface-2); transition: background 0.2s; }
+  .pn__link:hover { background: #ebebf0; }
+  .pn__link span { font-size: 13px; }
+  .pn__link strong { font-size: 19px; letter-spacing: -0.02em; }
+  .pn__link--next { text-align: right; }
+
+  .dcta { position: relative; background: #000; color: #f5f5f7; overflow: hidden; }
+  .dcta::before { content: ""; position: absolute; inset: 0; background: radial-gradient(45% 70% at 20% 100%, color-mix(in srgb, var(--from) 60%, transparent), transparent 70%), radial-gradient(40% 70% at 85% 0%, color-mix(in srgb, var(--to) 50%, transparent), transparent 70%); }
+  .dcta .container { position: relative; }
+  .dcta .lead { color: #a1a1a6; }
+  .dcta__ghost { color: #fff; }
+</style>

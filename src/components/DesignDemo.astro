@@ -1,0 +1,143 @@
+---
+const swatches = ["#7C3AED", "#EC4899", "#F97316", "#14B8A6", "#2563EB", "#1D1D1F"];
+const fonts = [
+  { key: "system", label: "Modern", value: "var(--font)" },
+  { key: "serif", label: "Classic", value: "'Iowan Old Style', 'Palatino Linotype', Georgia, serif" },
+  { key: "round", label: "Friendly", value: "ui-rounded, 'SF Pro Rounded', 'Nunito', var(--font)" },
+];
+---
+<div class="demo" data-demo>
+  <div class="demo__controls">
+    <div class="ctl">
+      <span class="ctl__label">Accent colour</span>
+      <div class="swatches" role="radiogroup" aria-label="Accent colour">
+        {swatches.map((color, index) => (
+          <button type="button" class="swatch" role="radio" aria-checked={index === 0 ? "true" : "false"} aria-label={color} data-color={color} style={`--c:${color}`}></button>
+        ))}
+      </div>
+    </div>
+    <div class="ctl">
+      <label class="ctl__label" for="demo-radius">Corner radius <span data-radius-out>16px</span></label>
+      <input id="demo-radius" type="range" min="0" max="28" value="16" data-radius />
+    </div>
+    <div class="ctl">
+      <span class="ctl__label">Font</span>
+      <div class="seg" role="radiogroup" aria-label="Font">
+        {fonts.map((font, index) => (
+          <button type="button" role="radio" aria-checked={index === 0 ? "true" : "false"} data-font={font.value}>{font.label}</button>
+        ))}
+      </div>
+    </div>
+    <div class="ctl">
+      <span class="ctl__label">Button style</span>
+      <div class="seg" role="radiogroup" aria-label="Button style">
+        <button type="button" role="radio" aria-checked="true" data-button="filled">Filled</button>
+        <button type="button" role="radio" aria-checked="false" data-button="outline">Outline</button>
+      </div>
+    </div>
+    <p class="demo__hint">This is how merchants style every Tessera widget: in the app, with a live preview. No code, no developer.</p>
+  </div>
+
+  <div class="demo__stage">
+    <div class="widget" data-widget>
+      <div class="widget__head">
+        <div>
+          <p class="widget__score">4.8</p>
+          <div class="stars" aria-label="4.8 out of 5 stars">★★★★★</div>
+          <p class="widget__count">Based on 1,284 reviews</p>
+        </div>
+        <button type="button" class="widget__btn">Write a review</button>
+      </div>
+      <div class="bars">
+        {[[5, 86], [4, 10], [3, 3], [2, 1], [1, 0]].map(([stars, pct]) => (
+          <div class="bars__row"><span>{stars}★</span><div class="bars__track"><i style={`width:${pct}%`}></i></div><span>{pct}%</span></div>
+        ))}
+      </div>
+      <article class="review">
+        <div class="review__top">
+          <span class="avatar">AK</span>
+          <div><strong>Aisha K.</strong> <span class="badge">Verified buyer</span><div class="stars stars--sm">★★★★★</div></div>
+        </div>
+        <p>Fits perfectly and the fabric feels premium. Ordered a second colour the same week.</p>
+        <div class="review__media"><span></span><span></span><span></span></div>
+      </article>
+    </div>
+  </div>
+</div>
+
+<style>
+  .demo { display: grid; grid-template-columns: 340px 1fr; gap: 40px; align-items: center; }
+  .demo__controls { display: grid; gap: 26px; }
+  .ctl { display: grid; gap: 10px; }
+  .ctl__label { font-size: 15px; font-weight: 600; display: flex; justify-content: space-between; }
+  .ctl__label span { color: var(--muted); font-weight: 500; font-variant-numeric: tabular-nums; }
+  .swatches { display: flex; gap: 10px; }
+  .swatch { width: 34px; height: 34px; border-radius: 50%; border: 0; background: var(--c); cursor: pointer; box-shadow: inset 0 0 0 2px rgb(255 255 255 / 30%); transition: transform 0.2s var(--ease); }
+  .swatch:hover { transform: scale(1.1); }
+  .swatch[aria-checked="true"] { box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px var(--c); }
+  input[type="range"] { width: 100%; accent-color: var(--violet); }
+  .seg { display: inline-flex; padding: 3px; background: var(--surface-2); border-radius: 12px; border: 1px solid var(--line); }
+  .seg button { flex: 1; border: 0; background: none; padding: 8px 14px; border-radius: 9px; font-size: 14px; font-weight: 500; cursor: pointer; color: var(--muted); transition: all 0.25s var(--ease); }
+  .seg button[aria-checked="true"] { background: var(--surface); color: var(--ink); box-shadow: 0 1px 3px rgb(0 0 0 / 12%); }
+  .demo__hint { font-size: 15px; color: var(--muted); }
+
+  .demo__stage {
+    position: relative; padding: clamp(20px, 5vw, 56px); border-radius: var(--radius-lg);
+    background: radial-gradient(circle at 15% 20%, #ddd6fe, transparent 45%), radial-gradient(circle at 85% 80%, #fbcfe8, transparent 45%), radial-gradient(circle at 80% 10%, #99f6e4, transparent 40%), #f4f1fa;
+  }
+  .widget {
+    --accent: #7C3AED; --r: 16px; --wfont: var(--font);
+    font-family: var(--wfont); background: #fff; border-radius: var(--r); padding: 24px; box-shadow: var(--shadow-lg);
+    display: grid; gap: 20px; transition: border-radius 0.3s var(--ease);
+  }
+  .widget * { transition: color 0.4s, background 0.4s, border-color 0.4s, border-radius 0.3s; }
+  .widget__head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; }
+  .widget__score { font-size: 44px; font-weight: 700; line-height: 1; letter-spacing: -0.03em; }
+  .stars { color: var(--accent); letter-spacing: 2px; font-size: 18px; margin-top: 4px; }
+  .stars--sm { font-size: 13px; margin: 0; }
+  .widget__count { color: var(--muted); font-size: 14px; }
+  .widget__btn { border: 2px solid var(--accent); background: var(--accent); color: #fff; padding: 10px 18px; border-radius: calc(var(--r) * 0.75); font-weight: 600; cursor: pointer; font-family: inherit; }
+  .widget[data-button="outline"] .widget__btn { background: transparent; color: var(--accent); }
+  .bars { display: grid; gap: 6px; font-size: 13px; color: var(--muted); }
+  .bars__row { display: grid; grid-template-columns: 28px 1fr 36px; gap: 10px; align-items: center; }
+  .bars__track { height: 8px; background: #f0f0f3; border-radius: 99px; overflow: hidden; }
+  .bars__track i { display: block; height: 100%; background: var(--accent); border-radius: inherit; }
+  .review { border-top: 1px solid var(--line); padding-top: 18px; display: grid; gap: 10px; font-size: 15px; }
+  .review__top { display: flex; gap: 12px; align-items: center; }
+  .avatar { width: 40px; height: 40px; border-radius: calc(var(--r) * 0.6 + 4px); background: color-mix(in srgb, var(--accent) 15%, #fff); color: var(--accent); display: grid; place-items: center; font-weight: 700; font-size: 14px; }
+  .badge { font-size: 12px; font-weight: 600; color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, #fff); padding: 2px 8px; border-radius: 99px; }
+  .review__media { display: flex; gap: 8px; }
+  .review__media span { width: 64px; height: 64px; border-radius: calc(var(--r) * 0.5); background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 35%, #fff), color-mix(in srgb, var(--accent) 10%, #fff)); }
+  .review__media span:nth-child(2) { background: linear-gradient(135deg, #fde68a, #fdba74); }
+  .review__media span:nth-child(3) { background: linear-gradient(135deg, #a7f3d0, #93c5fd); }
+
+  @media (max-width: 900px) { .demo { grid-template-columns: 1fr; } .demo__stage { order: -1; } }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-demo]").forEach((root) => {
+    const widget = root.querySelector<HTMLElement>("[data-widget]");
+    if (!widget) return;
+
+    const selectIn = (button: HTMLElement) => {
+      button.parentElement?.querySelectorAll("[role=radio]").forEach((other) => other.setAttribute("aria-checked", "false"));
+      button.setAttribute("aria-checked", "true");
+    };
+
+    root.querySelectorAll<HTMLElement>("[data-color]").forEach((button) =>
+      button.addEventListener("click", () => { selectIn(button); widget.style.setProperty("--accent", button.dataset.color ?? ""); }),
+    );
+    root.querySelectorAll<HTMLElement>("[data-font]").forEach((button) =>
+      button.addEventListener("click", () => { selectIn(button); widget.style.setProperty("--wfont", button.dataset.font ?? ""); }),
+    );
+    root.querySelectorAll<HTMLElement>("[data-button]").forEach((button) =>
+      button.addEventListener("click", () => { selectIn(button); widget.dataset.button = button.dataset.button; }),
+    );
+    const radius = root.querySelector<HTMLInputElement>("[data-radius]");
+    const radiusOut = root.querySelector<HTMLElement>("[data-radius-out]");
+    radius?.addEventListener("input", () => {
+      widget.style.setProperty("--r", `${radius.value}px`);
+      if (radiusOut) radiusOut.textContent = `${radius.value}px`;
+    });
+  });
+</script>

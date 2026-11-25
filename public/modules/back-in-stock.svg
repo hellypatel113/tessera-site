@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" width="320" height="180" role="img">
+<title>A sold-out product with an email field and a Notify me button; an envelope flies out to alert the shopper when it is back.</title>
+<style>
+.bs-f{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif}
+@media (prefers-reduced-motion: no-preference){
+.bs-b0{animation:bs-d0 11s ease-in-out infinite alternate}.bs-b1{animation:bs-d1 9s ease-in-out infinite alternate}.bs-b2{animation:bs-d0 12s ease-in-out infinite alternate-reverse}
+@keyframes bs-d0{from{transform:translate(0,0)}to{transform:translate(18px,12px)}}@keyframes bs-d1{from{transform:translate(0,0)}to{transform:translate(-20px,-10px)}}
+.bs-env{animation:bs-fly 5s ease-in-out infinite}
+@keyframes bs-fly{0%,12%{opacity:1;transform:translate(0,0)}20%{opacity:0;transform:translate(0,0)}24%{opacity:0;transform:translate(-62px,74px) scale(.6)}36%{opacity:1;transform:translate(-62px,74px) scale(.6)}70%,100%{opacity:1;transform:translate(0,0)}}
+}
+</style>
+<defs><linearGradient id="bs-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#10B981"/><stop offset="1" stop-color="#0891B2"/></linearGradient><radialGradient id="bs-r0"><stop offset="0" stop-color="#5EEAD4" stop-opacity=".75"/><stop offset="1" stop-color="#5EEAD4" stop-opacity="0"/></radialGradient><radialGradient id="bs-r1"><stop offset="0" stop-color="#FDBA74" stop-opacity=".75"/><stop offset="1" stop-color="#FDBA74" stop-opacity="0"/></radialGradient><radialGradient id="bs-r2"><stop offset="0" stop-color="#A78BFA" stop-opacity=".75"/><stop offset="1" stop-color="#A78BFA" stop-opacity="0"/></radialGradient></defs>
+<rect width="320" height="180" fill="#F4F1FA"/>
+<circle class="bs-b0" cx="160" cy="-10" r="120" fill="url(#bs-r0)"/>
+<circle class="bs-b1" cx="10" cy="180" r="130" fill="url(#bs-r1)"/>
+<circle class="bs-b2" cx="320" cy="150" r="130" fill="url(#bs-r2)"/>
+<rect x="20" y="21" width="214" height="144" rx="12" fill="#1E1B4B" opacity=".09"/>
+<rect x="20" y="18" width="214" height="144" rx="12" fill="#fff"/>
+<g class="bs-f" font-size="11">
+<rect x="32" y="30" width="84" height="120" rx="9" fill="#D6F5EA"/>
+<path d="M56 64h36l-4 58H60z" fill="url(#bs-g)" opacity=".5"/>
+<rect x="38" y="36" width="54" height="17" rx="8.5" fill="#6B7280"/>
+<text x="65" y="48.5" fill="#fff" font-size="10" font-weight="600" text-anchor="middle">Sold out</text>
+<rect x="128" y="34" width="90" height="8" rx="4" fill="#DDE1E6"/>
+<rect x="128" y="48" width="60" height="8" rx="4" fill="#EBEEF1"/>
+<rect x="128" y="76" width="94" height="26" rx="7" fill="#fff" stroke="#D3D7DD"/>
+<rect x="137" y="86" width="56" height="6" rx="3" fill="#DDE1E6"/>
+<rect x="128" y="110" width="94" height="26" rx="13" fill="url(#bs-g)"/>
+<text x="175" y="127" fill="#fff" font-weight="600" text-anchor="middle">Notify me</text>
+<path d="M226 104q20-6 30-40" fill="none" stroke="#0E9F7E" stroke-width="1.5" stroke-dasharray="2 5" stroke-linecap="round" opacity=".55"/>
+<g class="bs-env">
+<rect x="246" y="38" width="48" height="34" rx="6" fill="#1E1B4B" opacity=".1" transform="translate(0 3)"/>
+<rect x="246" y="38" width="48" height="34" rx="6" fill="#fff" stroke="#0E9F7E" stroke-width="1.6"/>
+<path d="M249 42l21 15 21-15" fill="none" stroke="#0E9F7E" stroke-width="1.6" stroke-linejoin="round"/>
+<circle cx="292" cy="40" r="6" fill="url(#bs-g)"/>
+</g>
+</g>
+</svg>
